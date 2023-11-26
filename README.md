@@ -1,2 +1,2 @@
 # Capstone
- capstone project for NEIT
+ Capstone project for A.S. in Software Engineering & Web Development for NEIT.
