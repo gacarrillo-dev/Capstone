@@ -1,7 +1,0 @@
-This is a test file.
-
-- feature-branch testing
-
-- test2-branch
-
-- test3-branch
