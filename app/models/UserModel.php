@@ -58,9 +58,15 @@ function findUserById($id)
  *
  * @param string $username - The username of the new user.
  * @param string $password - The password of the new user.
- * @return string - A message indicating the status of the user creation process.
+ * @param string $email - The email of the new users.
+ * @param string $firstName - The first name of the user.
+ * @param string $lastName - The last name of the user.
+ * @param string $phoneNumber - The phone number of the user.
+ * @param string $profilePicture - The profile picture of the user.
+ * @param DateTime $createdAt - The timestamp of the user creation.
+ * @return void $error_message - A message indicating the status of the user creation process.
  */
-function createUser($username, $password)
+function createUser($username, $password, $email, $firstName, $lastName, $phoneNumber, $profilePicture, $createdAt)
 {
     global $db;
 
@@ -69,9 +75,15 @@ function createUser($username, $password)
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+        $stmt = $db->prepare('INSERT INTO users (username, password, email, first_name, last_name, phone_number, profile_picture, create_at) VALUES (:username, :password, :email, :firstName, :lastName, :phoneNumber, :profilePicture, :createdAt)');
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $hashed_password);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':firstName', $firstName);
+        $stmt->bindParam(':lastName', $lastName);
+        $stmt->bindParam(':phoneNumber', $phoneNumber);
+        $stmt->bindParam(':profilePicture', $profilePicture);
+        $stmt->bindParam(':createdAt', $createdAt);
 
         if ($stmt->execute()) {
             // Registration successful, you can redirect to the login page or display a success message
@@ -92,7 +104,7 @@ function createUser($username, $password)
  *
  * @param string $username - The username of the user whose password is to be updated.
  * @param string $password - The new password for the user.
- * @return string - A message indicating the status of the password update process.
+ * @return void - A message indicating the status of the password update process.
  */
 function updateUserPassword($username, $password)
 {
