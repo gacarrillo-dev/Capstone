@@ -87,7 +87,7 @@ function createUser($username, $password, $email, $firstName, $lastName, $phoneN
 
         if ($stmt->execute()) {
             // Registration successful, you can redirect to the login page or display a success message
-            header('Location: /se266/final_project/views/auth/login.php');
+            header('Location: /se266/final_project/views/auth/login.view.php');
             exit();
         } else {
             // Registration failed for some other reason, show an error message
@@ -118,7 +118,7 @@ function updateUserPassword($username, $password)
         $stmt->bindParam(':username', $username);
         if ($stmt->execute()) {
             // Password update successful, you can redirect to the login page or display a success message
-            header('Location: /se266/final_project/views/auth/login.php');
+            header('Location: /se266/final_project/views/auth/login.view.php');
             exit();
         } else {
             // Password update failed for some other reason, show an error message

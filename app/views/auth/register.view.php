@@ -1,6 +1,6 @@
 <?php
 // Include the database connection and user model
-include(__DIR__ . '/../../config/db.php');
+include(__DIR__ . '/../../database/db.php');
 include(__DIR__ . '/../../models/UserModel.php');
 
 // Start or resume the session
@@ -29,7 +29,7 @@ if (isset($_POST['Register'])) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: /se266/final_project/views/auth/login.php');
+    header('Location: /se266/final_project/views/auth/login.view.php');
 }
 
 // If the for is sumbitted and no error exists, proceed to user creation
@@ -40,7 +40,7 @@ if (isset($_POST['Register']) && (empty($error_message))) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: /se266/final_project/views/auth/login.php');
+    header('Location: /se266/final_project/views/auth/login.view.php');
 }
 ?>
 

@@ -1,6 +1,6 @@
 <?php
     // Parse the INI configuration file to retrieve database credentials and setting
-    $ini = parse_ini_file( __DIR__ . '/dbconfig.ini');
+    $ini = parse_ini_file(__DIR__ . '/dbconfig.ini');
 
     // Uncomment the following lines for debugging and exit script after dumping INI contents
     // var_dump($ini);

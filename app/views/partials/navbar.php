@@ -1,18 +1,3 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="background-color: #1E1E1E;">
-    <!-- component -->
-<!-- follow me on twitter @asad_codes -->
-
 <div class="flex flex-wrap place-items-center h-screen">
   <section class="relative mx-auto">
       <!-- navbar -->
@@ -38,13 +23,19 @@
         </div>
       </div>
       <!-- Responsive navbar -->
-      
-
-    
     </nav>
-    
+
+      <!-- site content -->
+      <div class="container mx-auto px-6 py-16 text-center">
+          <div class="mx-auto max-w-lg">
+              <h1 class="text-3xl font-bold text-gray-800 dark:text-white lg:text-4xl">Organize your work and life.</h1>
+              <p class="mt-6 text-gray-500 dark:text-gray-300">Become focused, organized, and calm with Do It.</p>
+              <button class="mt-6 rounded-lg bg-blue-600 px-6 py-2.5 text-center text-sm font-medium capitalize leading-5 text-white hover:bg-blue-500 focus:outline-none lg:mx-0 lg:w-auto">Register</button>
+          </div>
+
+          <div class="mt-10 flex justify-center">
+              <img class="h-96 w-full rounded-xl object-cover lg:w-4/5" src="https://www.cflowapps.com/wp-content/uploads/2018/07/task-management-process.png" />
+          </div>
+      </div>
   </section>
 </div>
-
-</body>
-</html>

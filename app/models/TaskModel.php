@@ -1,7 +1,7 @@
 <?php
 
 // global $db originate from /db.php
-include(__DIR__ . '/../config/db.php');
+include(__DIR__ . '/../database/db.php');
 
 
 /**

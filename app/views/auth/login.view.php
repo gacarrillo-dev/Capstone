@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Include the file for database connection and user model
-include(__DIR__ . '/../../config/db.php');
+include(__DIR__ . '/../../database/db.php');
 include(__DIR__ . '/../../models/UserModel.php');
 
 // Check if the form is submitted
@@ -64,7 +64,7 @@ if (isset($_POST['login'])) {
     <div class="flex items-center justify-center min-h-screen">
         <div class="w-full max-w-md p-6 space-y-6 bg-white rounded-lg shadow-md">
             <h1 class="text-2xl font-semibold text-center">Login Page</h1>
-            <p class="text-center"><a href="register.php" class="text-blue-500">Register</a></p>
+            <p class="text-center"><a href="register.view.php" class="text-blue-500">Register</a></p>
             <form method="post" class="space-y-4">
                 <div>
                     <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
