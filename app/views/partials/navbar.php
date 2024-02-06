@@ -1,18 +1,3 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="background-color: #1E1E1E;">
-    <!-- component -->
-<!-- follow me on twitter @asad_codes -->
-
 <div class="flex flex-wrap place-items-center h-screen">
   <section class="relative mx-auto">
       <!-- navbar -->
@@ -38,13 +23,6 @@
         </div>
       </div>
       <!-- Responsive navbar -->
-      
-
-    
     </nav>
-    
   </section>
 </div>
-
-</body>
-</html>
