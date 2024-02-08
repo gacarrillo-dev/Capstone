@@ -59,13 +59,9 @@ function findUserById($id)
  * @param string $username - The username of the new user.
  * @param string $password - The password of the new user.
  * @param string $email - The email of the new users.
- * @param string $firstName - The first name of the user.
- * @param string $lastName - The last name of the user.
- * @param string $phoneNumber - The phone number of the user.
- * @param string $profilePicture - The profile picture of the user.
  * @return void $error_message - A message indicating the status of the user creation process.
  */
-function createUser($username, $password, $email, $firstName, $lastName, $phoneNumber, $profilePicture, $createdAt)
+function createUser($username, $email, $password)
 {
     global $db;
 
@@ -74,12 +70,13 @@ function createUser($username, $password, $email, $firstName, $lastName, $phoneN
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('INSERT INTO users (username, password) VALUES (:username, :password)');
+        $stmt = $db->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
         $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
         if ($stmt->execute()) {
             // Registration successful, you can redirect to the login page or display a success message
-            header('Location: /se266/final_project/views/auth/login.view.php');
+            header('Location: login.php');
             exit();
         } else {
             // Registration failed for some other reason, show an error message
@@ -110,7 +107,7 @@ function updateUserPassword($username, $password)
         $stmt->bindParam(':username', $username);
         if ($stmt->execute()) {
             // Password update successful, you can redirect to the login page or display a success message
-            header('Location: /se266/final_project/views/auth/login.view.php');
+            header('Location: login.php');
             exit();
         } else {
             // Password update failed for some other reason, show an error message
