@@ -39,7 +39,7 @@
             </div>
 
             <div class="mt-10 flex justify-center">
-                <img class="h-125 w-full rounded-xl object-cover lg:w-4/5"
+                <img alt="banner image" class="h-125 w-full rounded-xl object-cover lg:w-4/5"
                     src="https://miro.com/blog/wp-content/uploads/2017/06/kanban-illustration.png" />
             </div>
         </div>
