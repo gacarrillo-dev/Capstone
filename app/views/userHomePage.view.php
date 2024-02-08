@@ -5,12 +5,14 @@ require('partials/head.php');
         <div class="flex flex-col h-screen bg-zinc-900">
 
             <!-- Top bar -->
-            <div class="bg-zinc-950 text-white shadow w-full p-2 flex items-center justify-between">
+            <div class="bg-zinc-950/85 text-white shadow w-full p-2 flex items-center justify-between">
                 <div class="flex items-center">
                     <div class="hidden md:flex items-center"> <!-- only visible in smaller view -->
                         <!-- <img src="" alt="Logo" class="w-28 h-18 mr-2"> -->
-                        <i class="fa-solid fa-calendar-days mr-2 ml-4 text-xl text-red-900"></i>
-                        <h2 class="font-bold text-xl">do it.</h2>
+
+                        <!-- Logo -->
+                        <i class="fa-solid fa-calendar-days mr-2 ml-4 text-2xl text-red-900"></i>
+                        <h2 class="font-bold text-2xl">do it.</h2>
                     </div>
                     <div class="md:hidden flex items-center"> <!-- only visible in smaller view -->
                         <button id="menuBtn">
@@ -49,7 +51,7 @@ require('partials/head.php');
             <div class="flex-1 flex">
 
                 <!-- Sidebar container -->
-                <div class="p-2 bg-zinc-950 w-60 flex flex-col hidden md:flex" id="sideNav">
+                <div class="p-2 bg-zinc-950/85 w-60 flex flex-col hidden md:flex" id="sideNav">
                     <nav>
                         <a class="block text-gray-300 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
                             <i class="fas fa-home mr-2"></i>Home
@@ -88,40 +90,40 @@ require('partials/head.php');
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 p-2">
 
                         <!-- Section 1 -->
-                        <div class="bg-zinc-950 p-4 rounded-md">
+                        <div class="bg-zinc-950/85 p-4 rounded-md">
                             <h2 class="text-gray-300 text-lg font-semibold pb-1">My Tasks</h2>
 
                         </div>
 
                         <!-- Section 2 -->
-                        <div class="bg-zinc-950 p-4 rounded-md">
+                        <div class="bg-zinc-950/85 p-4 rounded-md">
                             <h2 class="text-gray-300 text-lg font-semibold pb-1">Info</h2>
 
                         </div>
 
                         <!-- Section 3 -->
-                        <div class="bg-zinc-950 p-4 rounded-md">
+                        <div class="bg-zinc-950/85 p-4 rounded-md">
                             <h2 class="text-gray-300 text-lg font-semibold pb-4">Favorites</h2>
                             <div class="my-1"></div> <!-- bottom border -->
                             <div class="bg-gradient-to-r from-red-600 to-red-800 h-px mb-6"></div> <!-- border -->
 
                             <!-- View more button -->
                             <div class="text-right mt-4">
-                                <button class="bg-red-900 hover:bg-red-950 text-white font-semibold py-2 px-4 rounded">
+                                <button class="bg-red-900/80 hover:bg-red-950 text-white font-semibold py-1.5 px-3 rounded-full text-sm">
                                     View more
                                 </button>
                             </div>
                         </div>
 
                         <!-- Section 4 -->
-                        <div class="bg-zinc-950 p-4 rounded-md mt-4">
+                        <div class="bg-zinc-950/85 p-4 rounded-md ">
                             <h2 class="text-gray-300 text-lg font-semibold pb-4">Lists</h2>
                             <div class="my-1"></div> <!-- bottom border -->
                             <div class="bg-gradient-to-r from-red-600 to-red-800 h-px mb-6"></div> <!-- border gradient -->
 
                             <!-- View more button -->
                             <div class="text-right mt-4">
-                                <button class="bg-red-900 hover:bg-red-950 text-white font-semibold py-2 px-4 rounded">
+                                <button class="bg-red-900/80 hover:bg-red-950 text-white font-semibold py-1.5 px-3 rounded-full text-sm">
                                     View more
                                 </button>
                             </div>

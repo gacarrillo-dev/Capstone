@@ -1,4 +1,7 @@
 <?php
+
+$heading = "Login Page";
+
 session_start();
 
 // Check if the user is already logged in, if so, redirect to search.php
@@ -6,13 +9,13 @@ if (isset($_SESSION['user_id'])) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: /se266/final_project/views/tasks/view_tasks.php');
+    header('Location: login.php');
     exit();
 }
 
 // Include the file for database connection and user model
-include(__DIR__ . '/../../database/db.php');
-include(__DIR__ . '/../../models/UserModel.php');
+require ('../../database/Database.php');
+require ('../../models/UserModel.php');
 
 // Check if the form is submitted
 if (isset($_POST['login'])) {
@@ -47,8 +50,5 @@ if (isset($_POST['login'])) {
      */
     header('Location: /se266/final_project/public/index.php');
 }
-
-
-$heading = "Login Page";
 
 require ('../../views/auth/login.view.php');

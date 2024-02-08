@@ -1,7 +1,9 @@
 <?php
+$heading = "Registration";
+
 // Include the database connection and user model
-include(__DIR__ . '/../../database/db.php');
-include(__DIR__ . '/../../models/UserModel.php');
+require ('../../database/Database.php');
+require ('../../models/UserModel.php');
 
 // Start or resume the session
 session_start();
@@ -29,7 +31,7 @@ if (isset($_POST['Register'])) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: /se266/final_project/views/auth/login.view.php');
+    header('Location: login.php');
 }
 
 // If the for is sumbitted and no error exists, proceed to user creation
@@ -40,9 +42,6 @@ if (isset($_POST['Register']) && (empty($error_message))) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: /se266/final_project/views/auth/login.view.php');
+    header('Location: login.php');
 }
-
-$heading = "Registration";
-
 require ('../../views/auth/register.view.php');
