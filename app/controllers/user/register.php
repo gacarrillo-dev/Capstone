@@ -3,6 +3,7 @@ $heading = "Registration";
 
 // Include the database connection and user model
 require ('../../database/Database.php');
+require ('../../database/dp.php');
 require ('../../models/UserModel.php');
 
 // Start or resume the session
