@@ -8,13 +8,15 @@
             <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
 
             <!-- Greeting container -->
-            <div class="w-full px-24 z-10 flex flex-col">
+            <div class="w-full px-24 z-10 flex flex-col items-center">
                 <h1 class="text-5xl font-bold text-left tracking-wide text-center">Welcome Back!</h1>
                 <p class="text-2xl text-gray-300 my-4 text-center">Please log in to continue.</p>
                 <p class="text-2xl text-center text-gray-300">or</p>
-                <button class="bg-red-900/90 hover:bg-red-950/90 text-white font-semibold py-2 px-4 rounded-full mx-auto my-4">
-                    Register
-                </button>
+                <a href="register.php">
+                    <button class="bg-red-900/90 hover:bg-red-950/90 text-white font-semibold py-2 px-4 rounded-full mx-auto my-4">
+                        Register
+                    </button>
+                </a>
             </div>
 
             <div class="bottom-0 absolute p-4 text-center right-0 left-0 flex justify-center space-x-4">
