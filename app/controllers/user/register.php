@@ -2,8 +2,6 @@
 $heading = "Registration";
 
 // Include the database connection and user model
-require ('../../database/Database.php');
-require ('../../database/dp.php');
 require ('../../models/UserModel.php');
 
 // Start or resume the session
@@ -12,7 +10,7 @@ session_start();
 $error_message = "";
 
 //Check if the form is submitted for user registration
-if (isset($_POST['submit'])) {
+if (isset($_POST['Register'])) {
     $username = filter_input(INPUT_POST, 'username');
     $email = filter_input(INPUT_POST, 'email');
     $password = filter_input(INPUT_POST, 'password');
@@ -37,7 +35,7 @@ if (isset($_POST['submit'])) {
 }
 
 // If the for is sumbitted and no error exists, proceed to user creation
-if (isset($_POST['submit']) && (empty($error_message))) {
+if (isset($_POST['Register']) && (empty($error_message))) {
     // Call the createUser() function to insert the user into the database
     createUser($username, $email, $password);
     // Redirect to the login page after successful user creation

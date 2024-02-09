@@ -11,27 +11,30 @@
             </div>
             <h2 class="text-2xl font-semibold text-center mb-4 text-gray-200">Create a new account</h2>
             <p class="text-gray-400 text-center mb-6">Enter your details to register.</p>
-            <form>
+            <form method="post" action="#">
                 <div class="mb-4">
                     <label for="username" class="block text-gray-400 text-sm font-semibold mb-2">Username *</label>
-                    <input type="text" id="username" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="iamHim">
+                    <input type="text" name="username" id="username" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="iamHim">
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-400 text-sm font-semibold mb-2">Email Address *</label>
-                    <input type="email" id="email" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="himothy@gmail.com">
+                    <input type="email" name="email" id="email" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="himothy@gmail.com">
                 </div>
                 <div class="mb-6">
                     <label for="password" class="block text-gray-400 text-sm font-semibold mb-2">Password *</label>
-                    <input type="password" id="password" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-red-900" required placeholder="••••••••">
+                    <input type="password" name="password" id="password" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-red-900" required placeholder="••••••••">
                     <p class="text-gray-300 text-xs mt-1">Must contain 1 uppercase letter, 1 number, min. 8 characters.</p>
                 </div>
-                <button type="submit" class="w-full bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">Register</button>
+                <input type="submit" name="Register" value="Register" class="w-full bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
                 <p class="text-gray-400 text-xs text-center mt-4">
                     By clicking Register, you agree to accept <span class="text-red-900">do it.</span>
                     <br>
                     <a href="#" class="text-blue-500 hover:underline">Terms and Conditions</a>.
                 </p>
             </form>
+            <?php if (isset($_POST['Register']) && (!empty($error_message))) : ?>
+                <p class="text-red-500"><?php echo $error_message; ?></p>
+            <?php endif; ?>
         </div>
     </div>
 </main>

@@ -1,11 +1,14 @@
 <?php
 
-class Database{
+class Database
+{
 
     public $connection;
 
-    public function __construct(){
-        // Parse the ini configuration file
+
+    public function __construct()
+    {
+        // Parse the INI configuration file
         $ini = parse_ini_file(__DIR__ . '/dbconfig.ini');
 
         // Construct DSN (Data Source Name) for PDO
@@ -21,10 +24,15 @@ class Database{
         $this->connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     }
 
+    /**
+     *
+     */
     public function query($sql, $params = [])
     {
         // Prepare and execute a query (to be implemented)
         $stmt = $this->connection->prepare($sql);
         $stmt->execute($params);
+
+        return $stmt;
     }
 }
