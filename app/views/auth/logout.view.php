@@ -8,5 +8,5 @@ session_destroy();
 /**
  * TODO: Change location to correct path.
  */
-header('Location: /se266/final_project/views/auth/login.view.php');
+header('Location: login.php');
 exit();

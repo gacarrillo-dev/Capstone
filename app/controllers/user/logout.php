@@ -1,3 +1,3 @@
 <?php
 
-require ('../../views/logout.view.php');
+require ('../../views/auth/logout.view.php');

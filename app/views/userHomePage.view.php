@@ -1,7 +1,10 @@
 <?php
 require('partials/head.php');
 ?>
-    <main>
+    <main class="">
+
+        <?php require('partials/createTaskModal.php'); ?>
+
         <div class="flex flex-col h-screen bg-zinc-900">
 
             <!-- Top bar -->
@@ -32,7 +35,7 @@ require('partials/head.php');
                     </div>
 
                     <!-- plus icon -->
-                    <button>
+                    <button id="createTaskBtn">
                         <i class="fa-solid fa-circle-plus text-gray-300 text-lg"></i>
                     </button>
                     <!-- notification icon -->
@@ -69,7 +72,7 @@ require('partials/head.php');
                     </nav>
 
                     <!-- Log out Section -->
-                    <a class="block text-gray-200 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white mt-auto" href="#">
+                    <a class="block text-gray-200 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white mt-auto" href="logout.php">
                         <i class="fas fa-sign-out-alt mr-2"></i>Log out
                     </a>
 
@@ -83,7 +86,7 @@ require('partials/head.php');
 
                 <!-- Page Content Area -->
                 <div class="flex-1 p-4">
-                    <div class="block text-gray-300 font-medium text-lg"><?= $heading ?></div>
+                    <div class="block text-gray-300 font-medium text-lg"><?= $_SESSION['username'] . "'s Homepage" ?></div>
                     <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-2"></div>
 
                     <!-- Container for the 4 sections -->
@@ -134,6 +137,23 @@ require('partials/head.php');
             </div>
         </div>
     </main>
-</body>
-</html>
-<?php //require('partials/footer.php') ?>
+
+    <script>
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById("createTaskModal");
+            modal.style.display = "none";
+        }
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("createTaskBtn");
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            console.log("Plus icon clicked.");
+            var modal = document.getElementById("createTaskModal");
+            modal.style.display = "block";
+        }
+    </script>
+
+<?php require('partials/footer.php') ?>

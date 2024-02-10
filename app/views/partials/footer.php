@@ -1,5 +1,5 @@
  <!-- component -->
-    <footer class="footer footer-center  w-full p-2 bg-zinc-950 text-gray-300">
+    <footer class="footer footer-center  w-full p-2 bg-zinc-950/85 text-gray-300">
         <div class="text-center">
             <p>
                 Copyright © 2024 -

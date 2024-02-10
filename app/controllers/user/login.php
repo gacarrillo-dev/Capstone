@@ -2,20 +2,19 @@
 
 $heading = "Login Page";
 
+// Include the file for database connection and user model
+require ('../../models/UserModel.php');
+
 session_start();
 
-// Check if the user is already logged in, if so, redirect to search.php
+// Check if the user is already logged in, if so, redirect to userHomePage.php
 if (isset($_SESSION['user_id'])) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: login.php');
+    header('Location: userHomePage.php');
     exit();
 }
-
-// Include the file for database connection and user model
-require ('../../database/Database.php');
-require ('../../models/UserModel.php');
 
 // Check if the form is submitted
 if (isset($_POST['login'])) {
@@ -37,7 +36,7 @@ if (isset($_POST['login'])) {
             /**
              * TODO: Change location to correct path.
              */
-            header('Location: /se266/final_project/views/tasks/view_tasks.php');
+            header('Location: userHomePage.php');
             exit();
         } else {
             $error_message = "Invalid username or password. Please try again.";
@@ -48,7 +47,7 @@ if (isset($_POST['login'])) {
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: /se266/final_project/public/index.php');
+    header('Location: index.php');
 }
 
 require ('../../views/auth/login.view.php');

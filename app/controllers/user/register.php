@@ -1,10 +1,11 @@
 <?php
+
 $heading = "Registration";
 
 // Include the database connection and user model
 require ('../../models/UserModel.php');
 
-// Start or resume the session
+// Start or resume the sessions
 session_start();
 
 $error_message = "";

@@ -3,7 +3,7 @@
     <div class="px-5 xl:px-12 py-3 flex w-full items-center rounded-lg bg-zinc-950/85 ring-1 ring-black/5 shadow-sm backdrop-blur-sm">
 
         <!-- Logo -->
-        <a class="text-3xl font-bold font-heading hover:text-red-900" href="#">
+        <a class="text-3xl font-bold font-heading hover:text-red-900" href="index.php">
             <i class="fa-solid fa-calendar-days mr-1 text-red-900"></i>
             <!-- <img class="h-9" src="logo.png" alt="logo"> -->
             do it.
