@@ -1,11 +1,11 @@
 <?php 
     require('partials/head.php');
+    require('partials/navbar.php');
 ?>
 
 <main class="flex flex-wrap place-items-center h-screen">
 
     <section class="relative mx-auto">
-        <?php require('partials/navbar.php'); ?>
 
         <!-- site content -->
         <div class="container mx-auto px-6 py-16 text-center">
