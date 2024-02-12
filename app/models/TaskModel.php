@@ -14,9 +14,9 @@ function getTasks () {
     return($results);
 }
 
-function addTask ($t, $d, $dd, $isf){
+function addTask ($t, $lid, $d, $dd, $isf){
     global $db;
-    $stmt = $db->prepare("INSERT INTO tasks SET title = :title, description = :description, due_date = :due_date, is_favorite = :is_favorite");
+    $stmt = $db->prepare("INSERT INTO tasks SET title = :title, list_id = :list_id, description = :description, due_date = :due_date, is_favorite = :is_favorite");
     $binds = array(
         ":title" => $t,
         ":description" => $d,

@@ -16,9 +16,9 @@ function getLists () {
 }
 
 
-function addList ($ln, $isf){
+function addList ($ln, $isf, $uid){
     global $db;
-    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite");
+    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite, user_id = :user_id");
     $binds = array(
         ":list_name" => $ln,
         ":is_favorite" => $isf
