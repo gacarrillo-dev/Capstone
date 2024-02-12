@@ -15,7 +15,7 @@ require('partials/head.php');
 
                         <!-- Logo -->
                         <i class="fa-solid fa-calendar-days mr-2 ml-4 text-2xl text-red-900"></i>
-                        <h2 class="font-bold text-2xl">do it.</h2>
+                        <h2 class="font-bold text-2xl">Admin</h2>
                     </div>
                     <div class="md:hidden flex items-center"> <!-- only visible in smaller view -->
                         <button id="menuBtn">
@@ -59,16 +59,6 @@ require('partials/head.php');
                         <a class="block text-gray-300 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
                             <i class="fas fa-home mr-2"></i>Home
                         </a>
-                        <a class="block text-gray-300 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
-                            <i class="fa-solid fa-inbox mr-2"></i>Today
-                        </a>
-                        <a class="block text-gray-200 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
-                            <i class="fa-regular fa-circle-right mr-2"></i>Up Coming
-                        </a>
-                        <a class="block text-gray-200 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
-                            <i class="fas fa-users mr-2"></i>Shared
-                        </a>
-
                     </nav>
 
                     <!-- Log out Section -->
