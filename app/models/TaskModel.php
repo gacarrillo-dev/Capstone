@@ -14,7 +14,7 @@ function getTasks () {
     return($results);
 }
 
-function addTask ($t, $d, $dd, $if){
+function addTask ($t, $d, $dd, $isf){
     global $db;
     $stmt = $db->prepare("INSERT INTO tasks SET title = :title, description = :description, due_date = :due_date, is_favorite = :is_favorite");
     $binds = array(
@@ -33,7 +33,7 @@ $tasks = getTasks();
 function deleteTask ($task_id){
     global $db;
     $results = [];
-    $sql = "DELETE FROM tasks WHERE task_id = ;task_id";
+    $sql = "DELETE FROM tasks WHERE task_id = :task_id";
     $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id")
     $binds = array(
         ":task_id" => $task_id
@@ -47,7 +47,7 @@ function deleteTask ($task_id){
 function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $created_at, $updated_at){
     $results = [];
     $sql = "UPDATE tasks SET title = :t, description = :d, due_date = :dd, is_favorite = :isf WHERE task_id = task_id";
-    $stmt = $db->prepare("UPDATE tasks SET title = :t, description = :d, due_date = :dd, is_favorite = :isf WHERE task_id = ;task_id");
+    $stmt = $db->prepare("UPDATE tasks SET title = :t, description = :d, due_date = :dd, is_favorite = :isf WHERE task_id = :task_id");
     $binds = array(
         ":title" => $t,
         ":description" => $d,
@@ -60,13 +60,14 @@ function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $c
     return ($results);
 }
 
-function searchTasks($title, $due_dater, $is_favorite)
-{
+
+function searchTasks($user_id, $title, $due_date, $is_favorite)
     global $db;
     $results = [];
     $binds = array();
     
-    $sql =  "SELECT * FROM  tasks WHERE 0=0";
+    $sql =  "SELECT * FROM  tasks WHERE user_id=user_id";
+
     if ($title != "") {
         $sql .= " AND title LIKE :title";
         $binds['title'] = '%'.$title.'%';

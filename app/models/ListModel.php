@@ -3,10 +3,11 @@
 // global $db originate from /db.php
 include(__DIR__ . '/../database/db.php');
 
-function getTasks () {
+
+function getLists () {
     global $db;
     $results = [];
-    $stmt = $db->prepare("SELECT task_id, list_id, title, description, due_date, is_favorite, created_at, updated_at From tasks ORDER BY due_date")
+    $stmt = $db->prepare("SELECT list_id, user_id, list_name, is_favorite, created_at, updated_at From lists ORDER BY list_name")
 
     if ($stmt->execute() && $stmt->rowcount() > 0 ) {
         $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
@@ -14,13 +15,12 @@ function getTasks () {
     return($results);
 }
 
-function addTask ($t, $d, $dd, $if){
+
+function addList ($ln, $isf){
     global $db;
-    $stmt = $db->prepare("INSERT INTO tasks SET title = :title, description = :description, due_date = :due_date, is_favorite = :is_favorite");
+    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite");
     $binds = array(
-        ":title" => $t,
-        ":description" => $d,
-        ":due_date" => $dd,
+        ":list_name" => $ln,
         ":is_favorite" => $isf
     );
     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
@@ -28,15 +28,16 @@ function addTask ($t, $d, $dd, $if){
     }
     return ($results);
 }
-$tasks = getTasks();
 
-function deleteTask ($task_id){
+$lists = getLists();
+
+function deleteList ($List_id){
     global $db;
     $results = [];
-    $sql = "DELETE FROM tasks WHERE task_id = ;task_id";
-    $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id")
+    $sql = "DELETE FROM lists WHERE list_id = :list_id";
+    $stmt = $db->prepare("DELETE FROM lists WHERE list_id = :list_id")
     $binds = array(
-        ":task_id" => $task_id
+        ":list_id" => $list_id
     );
     if($stmt->execute($binds) && $stmt->rowCount() > 0) {
         $results = 'Data Deleted';
@@ -44,14 +45,12 @@ function deleteTask ($task_id){
     return ($results);
 }
 
-function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $created_at, $updated_at){
+function updateList ($list_id, $user_id, $list_name, $is_favorite, $created_at, $updated_at){
     $results = [];
-    $sql = "UPDATE tasks SET title = :t, description = :d, due_date = :dd, is_favorite = :isf WHERE task_id = task_id";
-    $stmt = $db->prepare("UPDATE tasks SET title = :t, description = :d, due_date = :dd, is_favorite = :isf WHERE task_id = ;task_id");
+    $sql = "UPDATE lists SET list_name = :ln, is_favorite = :isf WHERE list_id = list_id";
+    $stmt = $db->prepare("UPDATE lists SET list_name = :ln, is_favorite = :isf WHERE list_id = :list_id");
     $binds = array(
-        ":title" => $t,
-        ":description" => $d,
-        ":due_date" => $dd,
+        ":list_name" => $ln,
         ":is_favorite" => $isf
     );
     if($stmt->execute($binds) && $stmt->rowCount() > 0) {
@@ -60,21 +59,17 @@ function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $c
     return ($results);
 }
 
-function searchTasks($title, $due_dater, $is_favorite)
+
+function searchLists($list_name, $is_favorite)
 {
     global $db;
     $results = [];
     $binds = array();
-    
-    $sql =  "SELECT * FROM  tasks WHERE 0=0";
-    if ($title != "") {
-        $sql .= " AND title LIKE :title";
-        $binds['title'] = '%'.$title.'%';
-    }
-
-    if ($due_date != "") {
-        $sql .= " AND due_date LIKE :due_date";
-        $binds['due_date'] = '%'.$due_date.'%';
+ 
+    $sql =  "SELECT * FROM  lists WHERE 0=0";
+    if ($list_name != "") {
+        $sql .= " AND list_name LIKE :list_name";
+        $binds['list_name'] = '%'.$list_name.'%';
     }
         
     if ($is_favorite != "") {
