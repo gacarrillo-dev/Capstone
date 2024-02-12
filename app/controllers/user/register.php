@@ -11,7 +11,7 @@ session_start();
 $error_message = "";
 
 //Check if the form is submitted for user registration
-if (isset($_POST['Register'])) {
+if (isset($_POST[''])) {
     $username = filter_input(INPUT_POST, 'username');
     $email = filter_input(INPUT_POST, 'email');
     $password = filter_input(INPUT_POST, 'password');
