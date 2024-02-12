@@ -6,7 +6,7 @@ include(__DIR__ . '/../database/db.php');
 function getTasks () { //CRUD operation to obtain task data from database
     global $db;
     $results = [];
-    $stmt = $db->prepare("SELECT task_id, list_id, title, description, due_date, is_favorite, created_at, updated_at From tasks ORDER BY due_date")
+    $stmt = $db->prepare("SELECT task_id, list_id, title, description, due_date, is_favorite, created_at, updated_at From tasks ORDER BY due_date");
 
     if ($stmt->execute() && $stmt->rowcount() > 0 ) {
         $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
