@@ -17,13 +17,15 @@ $users_lists = $db->query('SELECT users_lists.*, lists.list_name FROM users_list
 
 //Create a task
 if (isset($_POST['createTask'])) {
-    $list_id = filter_input(INPUT_POST, 'list_id');
+    $list_id = intval(filter_input(INPUT_POST, 'list_id'));
     $title = filter_input(INPUT_POST, 'title');
     $description = filter_input(INPUT_POST, 'description');
     $dueDate = filter_input(INPUT_POST, 'dueDate');
-    $is_favorite = filter_input(INPUT_POST, 'isFavorite');
+    $isFavorite = filter_input(INPUT_POST, 'isFavorite');
 
     //
+    var_dump($list_id);
+    addTask ($title, $list_id, $description, $dueDate, $isFavorite);
 }
 
 

@@ -6,7 +6,7 @@ include(__DIR__ . '/../database/db.php');
 function getTasks () { //CRUD operation to obtain task data from database
     global $db;
     $results = [];
-    $stmt = $db->prepare("SELECT task_id, list_id, title, description, due_date, is_favorite, created_at, updated_at From tasks ORDER BY due_date")
+    $stmt = $db->prepare("SELECT task_id, list_id, title, description, due_date, is_favorite, created_at, updated_at From tasks ORDER BY due_date");
 
     if ($stmt->execute() && $stmt->rowcount() > 0 ) {
         $results = $stmt->fetchALL(PDO::FETCH_ASSOC);
@@ -17,9 +17,12 @@ function getTasks () { //CRUD operation to obtain task data from database
 
 function addTask ($t, $lid, $d, $dd, $isf){
     global $db;
-    $stmt = $db->prepare("INSERT INTO tasks SET title = :title, list_id = :list_id, description = :description, due_date = :due_date, is_favorite = :is_favorite");
+
+    $stmt = $db->prepare("INSERT INTO tasks SET title = :title, list_id = :list_id, description = :description, due_date = :due_date, is_favorite = :is_favorite")
+    ('INSERT INTO tasks (title, password, email) VALUES (:username, :password, :email)');
     $binds = array(
         ":title" => $t,
+        ":list_id" => $lid,
         ":description" => $d,
         ":due_date" => $dd,
         ":is_favorite" => $isf
@@ -35,7 +38,7 @@ function deleteTask ($task_id){ //CRUD operation to delete task from database
     global $db;
     $results = [];
     $sql = "DELETE FROM tasks WHERE task_id = :task_id";
-    $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id")
+    $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id");
     $binds = array(
         ":task_id" => $task_id
     );
@@ -63,6 +66,7 @@ function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $c
 
 
 function searchTasks($user_id, $title, $due_date, $is_favorite) //Search function to search tasks in the database
+{
     global $db;
     $results = [];
     $binds = array();
