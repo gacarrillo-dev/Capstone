@@ -16,9 +16,10 @@ function getLists () { //CRUD operation for obtaining list data from database
 }
 
 
-function addList ($ln, $isf){ //CRUD operation for adding new list data to database
-    global $db; 
-    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite");
+
+function addList ($ln, $isf, $uid){
+    global $db;
+    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite, user_id = :user_id");
     $binds = array(
         ":list_name" => $ln,
         ":is_favorite" => $isf
