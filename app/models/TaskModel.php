@@ -60,8 +60,8 @@ function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $c
     return ($results);
 }
 
+
 function searchTasks($user_id, $title, $due_date, $is_favorite)
-{
     global $db;
     $results = [];
     $binds = array();

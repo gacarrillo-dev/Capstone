@@ -3,6 +3,7 @@
 // global $db originate from /db.php
 include(__DIR__ . '/../database/db.php');
 
+
 function getLists () {
     global $db;
     $results = [];
@@ -13,6 +14,7 @@ function getLists () {
     }
     return($results);
 }
+
 
 function addList ($ln, $isf){
     global $db;
@@ -26,6 +28,7 @@ function addList ($ln, $isf){
     }
     return ($results);
 }
+
 $lists = getLists();
 
 function deleteList ($List_id){
@@ -56,12 +59,13 @@ function updateList ($list_id, $user_id, $list_name, $is_favorite, $created_at, 
     return ($results);
 }
 
+
 function searchLists($list_name, $is_favorite)
 {
     global $db;
     $results = [];
     $binds = array();
-    
+ 
     $sql =  "SELECT * FROM  lists WHERE 0=0";
     if ($list_name != "") {
         $sql .= " AND list_name LIKE :list_name";
