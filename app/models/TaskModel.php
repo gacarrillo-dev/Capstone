@@ -59,6 +59,39 @@ function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $c
     }
     return ($results);
 }
+
+function searchTasks($title, $due_dater, $is_favorite)
+{
+    global $db;
+    $results = [];
+    $binds = array();
+    
+    $sql =  "SELECT * FROM  tasks WHERE 0=0";
+    if ($title != "") {
+        $sql .= " AND title LIKE :title";
+        $binds['title'] = '%'.$title.'%';
+    }
+
+    if ($due_date != "") {
+        $sql .= " AND due_date LIKE :due_date";
+        $binds['due_date'] = '%'.$due_date.'%';
+    }
+        
+    if ($is_favorite != "") {
+        $sql .= " AND is_favorite = :is_favorite";
+        $binds['is_favorite'] = $is_favorite;
+    }
+
+    $stmt = $db->prepare($sql);
+    if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else{
+        $results = "No results";
+    }
+
+    return $results;
+}
 /**
  * TODO: Create model representing capstone project.
  */
