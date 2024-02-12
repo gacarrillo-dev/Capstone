@@ -1,9 +1,9 @@
 <?php
-require('partials/head.php');
+require('../partials/head.php');
 ?>
     <main class="">
 
-        <?php require('partials/createTaskModal.php'); ?>
+        <?php require('../partials/createTaskModal.php'); ?>
 
         <div class="flex flex-col h-screen bg-zinc-900">
 
