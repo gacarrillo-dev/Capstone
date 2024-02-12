@@ -10,7 +10,7 @@
             <!-- Greeting container -->
             <div class="w-full px-24 z-10 flex flex-col items-center">
                 <h1 class="text-5xl font-bold text-left tracking-wide text-center">Welcome Back!</h1>
-                <p class="text-2xl text-gray-300 my-4 text-center">Please log in to continue.</p>
+                <p class="text-2xl text-gray-300 my-4 text-center">Log in with Admin to continue.</p>
                 <p class="text-2xl text-center text-gray-300">or</p>
                 <a href="register.php">
                     <button class="bg-red-900/90 hover:bg-red-950/90 text-white font-semibold py-2 px-4 rounded-full mx-auto my-4">
