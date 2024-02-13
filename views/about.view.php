@@ -1,12 +1,16 @@
-<?php 
-    require('partials/head.php');
-    require('partials/navbar.php');
-?>
 
 <main class="flex flex-wrap place-items-center h-screen">
 
     <section class="relative mx-auto">
-
+        <style>
+            .nav{
+                margin-bottom: 750px;
+            }
+        </style>
+        <div class="nav">
+            <?php require('partials/navbar.php'); ?>
+            <?php require('partials/head.php'); ?>
+        </div>
         <!-- site content -->
         <div class="container mx-auto px-6 py-16 text-center">
             <div class="mx-auto max-w-lg">
