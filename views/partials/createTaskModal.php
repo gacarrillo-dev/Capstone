@@ -23,7 +23,7 @@
             </div>
             <div>
                 <label for="description" class="block text-gray-300 text-sm font-bold mb-2">Description:</label>
-                <textarea id="description" name="description" class="w-full border border-gray-400 bg-zinc-950/80 text-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" rows="4" required></textarea>
+                <textarea id="description" name="description" class="w-full border border-gray-400 bg-zinc-950/80 text-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" rows="4"></textarea>
             </div>
             <div>
                 <label for="dueDate" class="block text-gray-300 text-sm font-bold mb-2">Due Date:</label>
@@ -34,7 +34,7 @@
                 <label for="isFavorite" class="text-gray-300 text-sm font-bold">Add to Favorites</label>
             </div>
             <div class="text-left">
-                <button name="cancel" class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" onclick="closeModal()">Cancel</button>
+                <button name="cancel" class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" onclick="closeTaskModal()">Cancel</button>
                 <button type="submit" name="createTask" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Task</button>
             </div>
         </form>
