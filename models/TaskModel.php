@@ -17,25 +17,23 @@ function getTasks () { //CRUD operation to obtain task data from database
 
 function addTask ($t, $lid, $d, $dd, $isf){
     global $db;
-    $stmt = $db->prepare("INSERT INTO tasks SET title = :title, list_id = :list_id, description = :description, due_date = :due_date, is_favorite = :is_favorite");
+
+    $stmt = $db->prepare('INSERT INTO tasks (title, list_id, description, due_date, is_favorite) VALUES (:title, :list_id, :description, :due_date, :is_favorite)');
     $binds = array(
         ":title" => $t,
+        ":list_id" => $lid,
         ":description" => $d,
         ":due_date" => $dd,
         ":is_favorite" => $isf
     );
-    if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-        $results = 'Data Added';
-    }
-    return ($results);
+    $stmt->execute($binds);
 }
-$tasks = getTasks();
 
 function deleteTask ($task_id){ //CRUD operation to delete task from database
     global $db;
     $results = [];
     $sql = "DELETE FROM tasks WHERE task_id = :task_id";
-    $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id")
+    $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id");
     $binds = array(
         ":task_id" => $task_id
     );
@@ -63,6 +61,7 @@ function updateTask ($task_id, $title, $description, $due_date, $is_favorite, $c
 
 
 function searchTasks($user_id, $title, $due_date, $is_favorite) //Search function to search tasks in the database
+{
     global $db;
     $results = [];
     $binds = array();

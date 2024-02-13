@@ -10,14 +10,14 @@
         </a>
         <!-- Nav Links -->
         <ul class=" md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-            <li><a class="hover:text-red-900" href="services.php">Services</a></li>
-            <li><a class="hover:text-red-900" href="about.php">About</a></li>
-            <li><a class="hover:text-red-900" href="contact.php">Contact</a></li>
+            <li><a class="hover:text-red-900" href="../controllers/services.php">Services</a></li>
+            <li><a class="hover:text-red-900" href="../controllers/about.php">About</a></li>
+            <li><a class="hover:text-red-900" href="../controllers/contact.php">Contact</a></li>
         </ul>
         <!-- Header Icons -->
         <div class=" xl:flex items-center space-x-5 items-center">
             <!-- login button -->
-            <a href="user/login.php">
+            <a href="../controllers/user/login.php">
                 <button class="bg-red-900 hover:bg-red-950 text-white font-semibold py-2 px-4 rounded-full mr-1">
                     Log in
                 </button>

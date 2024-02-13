@@ -8,10 +8,10 @@
 
     // Create a PDO database connection using the retrieved settings from the INI file
     $db = new PDO(
-        "mysql:host=" . $ini['servername'] . 
-        ";port=" . $ini['port'] . 
-        ";dbname=" . $ini['dbname'], 
-        $ini['username'], 
+        "mysql:host=" . $ini['servername'] .
+        ";port=" . $ini['port'] .
+        ";dbname=" . $ini['dbname'],
+        $ini['username'],
         $ini['password']
     );
 
