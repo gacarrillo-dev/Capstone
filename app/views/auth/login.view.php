@@ -31,7 +31,7 @@
             <div class="w-full py-6 z-20">
                 <!-- Logo -->
                 <h1 class="my-6 text-5xl font-medium hover:text-red-900">
-                    <a href="../index.php"><i class="fa-solid fa-calendar-days mr-4 text-red-900"></i>do it.</a>
+                    <a href="../controllers/user/index.php"><i class="fa-solid fa-calendar-days mr-4 text-red-900"></i>do it.</a>
                 </h1>
 
                 <!-- Login Form -->
