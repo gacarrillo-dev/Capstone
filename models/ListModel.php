@@ -4,7 +4,7 @@
 include(__DIR__ . '/../database/db.php');
 
 
-function getLists () {
+function getLists () { //CRUD operation for obtaining list data from database
     global $db;
     $results = [];
     $stmt = $db->prepare("SELECT list_id, user_id, list_name, is_favorite, created_at, updated_at From lists ORDER BY list_name")
@@ -16,9 +16,10 @@ function getLists () {
 }
 
 
-function addList ($ln, $isf){
+
+function addList ($ln, $isf, $uid){
     global $db;
-    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite");
+    $stmt = $db->prepare("INSERT INTO lists SET list_name = :list_name, is_favorite = :is_favorite, user_id = :user_id");
     $binds = array(
         ":list_name" => $ln,
         ":is_favorite" => $isf
@@ -31,7 +32,7 @@ function addList ($ln, $isf){
 
 $lists = getLists();
 
-function deleteList ($List_id){
+function deleteList ($List_id){ //CRUD operation for deleting list data from database
     global $db;
     $results = [];
     $sql = "DELETE FROM lists WHERE list_id = :list_id";
@@ -45,7 +46,7 @@ function deleteList ($List_id){
     return ($results);
 }
 
-function updateList ($list_id, $user_id, $list_name, $is_favorite, $created_at, $updated_at){
+function updateList ($list_id, $user_id, $list_name, $is_favorite, $created_at, $updated_at){ //CRUD operation to delete list from database
     $results = [];
     $sql = "UPDATE lists SET list_name = :ln, is_favorite = :isf WHERE list_id = list_id";
     $stmt = $db->prepare("UPDATE lists SET list_name = :ln, is_favorite = :isf WHERE list_id = :list_id");
@@ -60,13 +61,13 @@ function updateList ($list_id, $user_id, $list_name, $is_favorite, $created_at, 
 }
 
 
-function searchLists($list_name, $is_favorite)
+function searchLists($list_name, $is_favorite) //Search function to search lists in database
 {
     global $db;
     $results = [];
     $binds = array();
  
-    $sql =  "SELECT * FROM  lists WHERE 0=0";
+    $sql =  "SELECT * FROM  lists WHERE user_id=user_id";
     if ($list_name != "") {
         $sql .= " AND list_name LIKE :list_name";
         $binds['list_name'] = '%'.$list_name.'%';
