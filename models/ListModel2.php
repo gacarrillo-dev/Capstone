@@ -80,3 +80,17 @@ function get_users_lists($user_id) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Function to get the list of tasks.
+ *
+ * @param int $list_id - The ID of the list getting tasks for.
+ * @return array - Return the list of tasks.
+ */
+function get_list_info($list_id) {
+    global $db;
+    $stmt = $db->prepare("SELECT * from lists WHERE list_id = :list_id");
+    $stmt->bindParam(':list_id', $list_id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
