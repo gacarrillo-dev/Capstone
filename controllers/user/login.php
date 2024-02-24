@@ -9,11 +9,21 @@ session_start();
 
 // Check if the user is already logged in, if so, redirect to userHomePage.php
 if (isset($_SESSION['user_id'])) {
+    $user_level = $_SESSION['user_level'];
     /**
      * TODO: Change location to correct path.
      */
-    header('Location: userHomePage.php');
-    exit();
+    if ($user_level == 2){
+        header('Location: userHomePage.php');
+        exit();
+    }
+    elseif ($user_level == 1) {
+        header('Location: adminHomePage.php');
+        exit();
+    }
+    else{
+        $error_message = "Invalid user level. Please try again.";
+    }
 }
 
 // Check if the form is submitted
@@ -32,12 +42,23 @@ if (isset($_POST['login'])) {
             // Successful login
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
+            $_SESSION['user_level'] = $user['user_level'];
 
             /**
              * TODO: Change location to correct path.
              */
-            header('Location: userHomePage.php');
-            exit();
+
+            if ($user_level == 2){
+                header('Location: userHomePage.php');
+                exit();
+            }
+            elseif ($user_level == 1) {
+                header('Location: adminHomePage.php');
+                exit();
+            }
+            else{
+                $error_message = "Invalid user level. Please try again.";
+            }
         } else {
             $error_message = "Invalid username or password. Please try again.";
         }
