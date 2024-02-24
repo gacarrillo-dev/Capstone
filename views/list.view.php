@@ -5,6 +5,9 @@
 <?php require('partials/createTaskModal.php'); ?>
 <!-- import create list modal -->
 <?php require('partials/createListModal.php'); ?>
+<!-- import delete task modal -->
+<?php require('partials/deleteTaskModal.php'); ?>
+
 
         <!-- page container -->
         <div class="flex flex-col h-screen bg-zinc-900">

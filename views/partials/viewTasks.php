@@ -18,11 +18,14 @@
                             <a href="editTask.php?action=Update&taskID=<?= htmlspecialchars($task['task_id']) ?>"><h3 class="text-lg font-semibold text-white"'><?= htmlspecialchars($task['title']) ?></h3></a>
                             <p class="text-white"><?= htmlspecialchars($task['description']) ?></p>
                             <p class="text-white ml-3"><i class="fa-solid fa-calendar-day mr-2"></i> <?= htmlspecialchars($task['due_date']) ?></p>
-                            <input type="checkbox" class="text-white"> <?= htmlspecialchars($task['is_favorite']) ?></input>
                         </div>
 
                         <div class="flex items-center ml-10">
-                            <i class="fa-regular fa-trash-can text-red-800"></i>
+                            <form action="" method="post" id="deleteTaskForm">
+                                <input type="hidden" name="taskId" value="<?= htmlspecialchars($task['task_id']) ?>">
+                                <button type="submit" name="deleteTask"><i class="fa-regular fa-trash-can text-red-800 hover:cursor-pointer" id="deleteBtn"></i></button>
+
+                            </form>
                         </div>
                     </li>
 

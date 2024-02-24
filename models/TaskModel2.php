@@ -52,3 +52,36 @@ function get_tasks($list_id) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Function to delete the task.
+ * @param int $task_id - The ID of the task getting deleted
+ * @return array - return the result message
+ */
+function deleteTask ($task_id){ //CRUD operation to delete task from database
+    global $db;
+    $results = [];
+    $sql = "DELETE FROM tasks WHERE task_id = :task_id";
+    $stmt = $db->prepare("DELETE FROM tasks WHERE task_id = :task_id");
+    $binds = array(
+        ":task_id" => $task_id
+    );
+    if($stmt->execute($binds) && $stmt->rowCount() > 0) {
+        $results = 'Data Deleted';
+    }
+    return ($results);
+}
+
+/**
+ * Function to get task info.
+ *
+ * @param int $task_id - The ID of the task.
+ * @return array - Return the task info.
+ */
+function get_task_info($task_id) {
+    global $db;
+    $stmt = $db->prepare("SELECT * from tasks WHERE task_id = :task_id");
+    $stmt->bindParam(':task_id', $task_id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}

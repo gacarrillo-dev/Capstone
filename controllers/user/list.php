@@ -32,7 +32,7 @@ if (isset($_POST['createTask'])) {
     createTask($list_id, $title, $description, $dueDate, $isFavorite);
 
     // reload the page data
-    header("Location: {$_SERVER['PHP_SELF']}");
+    header("Refresh:0");
     exit();
 }
 
@@ -51,9 +51,16 @@ if (isset($_POST['createList'])){
     // call the create a list function from list model
     createList($listName, $isFavoriteList, $user_id);
 
+
     // reload the page data
-    header("Location: {$_SERVER['PHP_SELF']}");
+    header("Refresh:0");
     exit();
+}
+
+//delete task
+if(isset($_POST['deleteTask'])){
+    $id = filter_input(INPUT_POST, 'taskId');
+    var_dump($id);
 }
 
 
