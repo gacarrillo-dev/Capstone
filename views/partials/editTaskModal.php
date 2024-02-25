@@ -2,7 +2,7 @@
 <div id="editTaskModal" class="hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
 
     <!-- Modal Container -->
-    <div class="bg-zinc-900 p-8 rounded-lg max-w-md">
+    <div class="bg-zinc-900 p-8 h-screen rounded-lg max-w-md">
 
         <!-- Modal Content -->
         <form action="" id="updateTaskForm" method="post">
