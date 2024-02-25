@@ -52,6 +52,24 @@ function findUserById($id)
     return $results;
 }
 
+function findUsersByListId($list_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Prepare the SQL statement to fetch user details based on list ID
+    $stmt = $db->prepare('SELECT u.* FROM users_lists ul JOIN users u ON ul.user_id = u.user_id WHERE ul.list_id = :list_id');
+    $stmt->bindParam(':list_id', $list_id);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
 
 /**
  * Creates a new user in the database.
