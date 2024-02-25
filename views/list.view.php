@@ -7,6 +7,8 @@
 <?php require('partials/createListModal.php'); ?>
 <!-- import delete task modal -->
 <?php require('partials/deleteTaskModal.php'); ?>
+<!-- import edit task modal -->
+<?php require('partials/editTaskModal.php'); ?>
 
 
         <!-- page container -->

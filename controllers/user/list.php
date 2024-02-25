@@ -1,6 +1,7 @@
 <?php
 require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
+require ('../../models/UserModel.php');
 
 $heading = "View Tasks"; 
 
@@ -12,6 +13,8 @@ $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
 $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
+$sharedUsers = findUsersByListId($viewListID);
+$sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
 
 //Create a task
 if (isset($_POST['createTask'])) {
@@ -59,8 +62,34 @@ if (isset($_POST['createList'])){
 
 //delete task
 if(isset($_POST['deleteTask'])){
-    $id = filter_input(INPUT_POST, 'taskId');
-    var_dump($id);
+    $id = filter_input(INPUT_POST, 'taskIdHidden');
+    deleteTask($id);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
+}
+
+//Update a task
+if (isset($_POST['updateTask'])) {
+    $task_id = intval(filter_input(INPUT_POST, 'taskIdEditHidden'));
+    $updateTitle = filter_input(INPUT_POST, 'updateTitle');
+    $updateDescription = filter_input(INPUT_POST, 'updateDescription');
+    $updateDueDate = filter_input(INPUT_POST, 'updateDueDate');
+
+    if (filter_input(INPUT_POST, 'updateIsFavorite') == null){
+        $updateIsFavorite = 0;
+    }
+    else{
+        $updateIsFavorite = filter_input(INPUT_POST, 'updateIsFavorite');
+    }
+
+    // call update a task function from task model
+    updateTask($task_id, $updateTitle, $updateDescription, $updateDueDate, $updateIsFavorite);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
 }
 
 
