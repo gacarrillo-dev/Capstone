@@ -121,3 +121,11 @@ function get_task_info($task_id) {
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function get_favorite_tasks($task_id) {
+    global $db;
+    $stmt = $db->prepare("SELECT * from tasks WHERE task_id = :task_id AND is_favorite = 1");
+    $stmt ->bindParam(':task_id', $task_id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}

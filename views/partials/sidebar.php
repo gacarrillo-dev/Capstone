@@ -10,7 +10,7 @@
         <a class="block text-gray-200 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
             <i class="fa-regular fa-circle-right mr-3 text-gray-500"></i>Up Coming
         </a>
-        <a class="block text-gray-200 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="#">
+        <a class="block text-gray-200 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="favorites.php">
             <i class="fa-solid fa-star mr-3 text-gray-500"></i>Favorites
         </a>
 
