@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "Favorites";
+$heading = "Due Today";
 
 session_start();
 
@@ -15,7 +15,7 @@ $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$favorites = findFavoriteTasksByUserId($user_id);
+$todays = findTasksDueTodayForUser($user_id);
 
 
 //Create a task
@@ -95,5 +95,5 @@ if (isset($_POST['updateTask'])) {
 }
 
 
-require ('../../views/favorites.view.php');
+require ('../../views/todays.view.php');
 

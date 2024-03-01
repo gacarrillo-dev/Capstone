@@ -121,3 +121,98 @@ function get_task_info($task_id) {
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Function to get user's favorite tasks
+ *
+ * @param int $user_id - The ID of the user.
+ * @return array - Return the task info.
+ */
+function findFavoriteTasksByUserId($user_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Prepare the SQL statement to fetch favorite tasks based on user ID
+    $stmt = $db->prepare('SELECT t.* FROM tasks t JOIN users_lists ul ON t.list_id = ul.list_id WHERE ul.user_id = :user_id AND t.is_favorite = 1');
+    $stmt->bindParam(':user_id', $user_id);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
+/**
+ * Function to get user's tasks that are due today.
+ *
+ * @param int $user_id - The ID of the user.
+ * @return array - Return the task info.
+ */
+function findTasksDueTodayForUser($user_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Get the current date
+    $currentDate = date('Y-m-d');
+
+    // Prepare the SQL statement to fetch tasks due today
+    $stmt = $db->prepare('SELECT t.*
+                          FROM tasks t
+                          INNER JOIN lists l ON t.list_id = l.list_id
+                          INNER JOIN users_lists ul ON l.list_id = ul.list_id
+                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
+                          AND DATE(t.due_date) = :current_date');
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':current_date', $currentDate);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
+/**
+ * Function to get user's favorite tasks
+ *
+ * @param int $user_id - The ID of the user.
+ * @return array - Return the task info.
+ */
+function findTasksDueNextSevenDaysForUser($user_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Get the current date
+    $currentDate = date('Y-m-d');
+
+    // Calculate the date 7 days from now
+    $sevenDaysLater = date('Y-m-d', strtotime('+7 days', strtotime($currentDate)));
+
+    // Prepare the SQL statement to fetch tasks due in the next 7 days
+    $stmt = $db->prepare('SELECT t.*
+                          FROM tasks t
+                          INNER JOIN lists l ON t.list_id = l.list_id
+                          INNER JOIN users_lists ul ON l.list_id = ul.list_id
+                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
+                          AND (DATE(t.due_date) > :current_date AND DATE(t.due_date) <= :seven_days_later)');
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':current_date', $currentDate);
+    $stmt->bindParam(':seven_days_later', $sevenDaysLater);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
