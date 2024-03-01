@@ -1,6 +1,6 @@
 <?php require('partials/head.php'); ?>
-<main class="">
 
+<main class="">
 <!-- import create task modal -->
 <?php require('partials/createTaskModal.php'); ?>
 <!-- import create list modal -->

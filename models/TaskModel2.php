@@ -73,11 +73,11 @@ function deleteTask ($task_id){ //CRUD operation to delete task from database
 }
 
 /**
- * Updates a user in the database.
+ * Updates a task in the database.
  *
- *  @param string $list_id - The is for the list the task is being created for.
+ *  @param string $task_id - The is for the list the task is being created for.
  *  @param string $title - The title of the task.
- *  @param string $descripton - The description of the task.
+ *  @param string $description - The description of the task.
  *  @param string $due_date - The due date of the task.
  *  @param boolean $is_favorite - Boolean if the task is favorited.
  *  @return void $error_message - A message indicating the status of the user creation process
