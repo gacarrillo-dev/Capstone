@@ -10,7 +10,6 @@
         </a>
         <!-- Nav Links -->
         <ul class=" md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-            <li><a class="hover:text-red-900" href="../controllers/services.php">Services</a></li>
             <li><a class="hover:text-red-900" href="../controllers/about.php">About</a></li>
             <li><a class="hover:text-red-900" href="../controllers/contact.php">Contact</a></li>
         </ul>
