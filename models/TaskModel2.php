@@ -135,7 +135,10 @@ function findFavoriteTasksByUserId($user_id)
     $results = [];
 
     // Prepare the SQL statement to fetch favorite tasks based on user ID
-    $stmt = $db->prepare('SELECT t.* FROM tasks t JOIN users_lists ul ON t.list_id = ul.list_id WHERE ul.user_id = :user_id AND t.is_favorite = 1');
+    $stmt = $db->prepare('SELECT t.*, l.list_name
+                                FROM tasks t JOIN users_lists ul ON t.list_id = ul.list_id
+                                JOIN lists l ON t.list_id = l.list_id
+                                WHERE ul.user_id = :user_id AND t.is_favorite = 1');
     $stmt->bindParam(':user_id', $user_id);
 
     // Execute the statement
@@ -145,6 +148,42 @@ function findFavoriteTasksByUserId($user_id)
 
     return $results;
 }
+
+
+/**
+ * Function to get user's past due tasks.
+ *
+ * @param int $user_id - The ID of the user.
+ * @return array - Return the task info.
+ */
+function findPastDueTasksForUser($user_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Get the current date
+    $currentDate = date('Y-m-d');
+
+    // Prepare the SQL statement to fetch past due tasks
+    $stmt = $db->prepare('SELECT t.*, l.list_name
+                          FROM tasks t
+                          INNER JOIN lists l ON t.list_id = l.list_id
+                          INNER JOIN users_lists ul ON l.list_id = ul.list_id
+                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
+                          AND DATE(t.due_date) < :current_date 
+                          ORDER BY  t.due_date');
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':current_date', $currentDate);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
 
 /**
  * Function to get user's tasks that are due today.
@@ -162,7 +201,7 @@ function findTasksDueTodayForUser($user_id)
     $currentDate = date('Y-m-d');
 
     // Prepare the SQL statement to fetch tasks due today
-    $stmt = $db->prepare('SELECT t.*
+    $stmt = $db->prepare('SELECT t.*, l.list_name
                           FROM tasks t
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
@@ -180,7 +219,7 @@ function findTasksDueTodayForUser($user_id)
 }
 
 /**
- * Function to get user's favorite tasks
+ * Function to get user's tasks due in the next 7 days
  *
  * @param int $user_id - The ID of the user.
  * @return array - Return the task info.
@@ -198,12 +237,13 @@ function findTasksDueNextSevenDaysForUser($user_id)
     $sevenDaysLater = date('Y-m-d', strtotime('+7 days', strtotime($currentDate)));
 
     // Prepare the SQL statement to fetch tasks due in the next 7 days
-    $stmt = $db->prepare('SELECT t.*
+    $stmt = $db->prepare('SELECT t.*, l.list_name
                           FROM tasks t
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
                           WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
-                          AND (DATE(t.due_date) > :current_date AND DATE(t.due_date) <= :seven_days_later)');
+                          AND (DATE(t.due_date) > :current_date AND DATE(t.due_date) <= :seven_days_later)
+                          ORDER BY  t.due_date');
     $stmt->bindParam(':user_id', $user_id);
     $stmt->bindParam(':current_date', $currentDate);
     $stmt->bindParam(':seven_days_later', $sevenDaysLater);
@@ -215,4 +255,40 @@ function findTasksDueNextSevenDaysForUser($user_id)
 
     return $results;
 }
+
+/**
+ * Function to get user's results for a search
+ *
+ * @param int $user_id - The ID of the user.
+ * @param string $keyword - The search query from user.
+ * @return array - Return the task info.
+ */
+function searchTasks($user_id, $keyword, $keyword2)
+{
+    global $db;
+
+    $results = [];
+
+    // Prepare the SQL statement to search for tasks
+    $stmt = $db->prepare('SELECT t.*, l.list_name
+                          FROM tasks t
+                          INNER JOIN lists l ON t.list_id = l.list_id
+                          INNER JOIN users_lists ul ON l.list_id = ul.list_id
+                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
+                          AND (t.title LIKE :keyword  OR t.description LIKE :keyword2)');
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindValue(':keyword', '%' . $keyword . '%');
+    $stmt->bindValue(':keyword2', '%' . $keyword2 . '%');
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
+
+
+
 

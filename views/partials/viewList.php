@@ -3,14 +3,15 @@
     <div class="block text-gray-300 font-semibold text-3xl"><?= $listInfo['list_name'] ?></div>
     <div class="block text-gray-300 font-semibold text-sm mt-3 ml-6">Created at: <?= $listInfo['created_at'] ?> </div>
     <div class="block text-gray-300 font-semibold text-sm mt-3 ml-6">Users: <?= $sharedUsersList ?></div>
-    <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-2"></div>
+    <button name="shareBtn" id="shareBtn" class="bg-blue-400 hover:bg-blue-600 text-white text-sm ml-6 font-semibold mt-3 py-1 px-2 rounded">Share</button>
+    <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-4"></div>
 
     <!-- Container for the 4 sections -->
     <div class="gap-4 mt-2 p-2 w-full mx-auto ">
 
-        <div class="container overflow-auto mt-6 px-3">
+        <div class="container overflow-y-auto max-h-70 mt-6 px-3">
             <?php if (is_array($tasks) && count($tasks)> 0): ?>
-            <ul class="divide-y">
+            <ul class="">
                 <?php foreach ($tasks as $task) : ?>
 
                     <li class="p-4 rounded-lg bg-zinc-950 my-4 flex flex-row justify-between">

@@ -136,3 +136,31 @@ function updateUserPassword($username, $password)
         $error_message = "Database error: " . $e->getMessage();
     }
 }
+
+/**
+ * Function to search users in the database.
+ *
+ * @param string $keyword - The search query to find user.
+ * @return array - Return the array of users matching the keyword.
+ */
+function searchUsers($keyword, $keyword2, $keyword3)
+{
+    global $db;
+
+    $results = [];
+
+    //prepare the SQL statement to search for users
+    $stmt = $db->prepare('SELECT *
+                         FROM users
+                         WHERE (username LIKE :keyword OR email LIKE :keyword2 OR first_name LIKE :keyword3)');
+    $stmt->bindValue(':keyword', '%' . $keyword . '&');
+    $stmt->bindValue(':keyword2', '%' . $keyword2 . '&');
+    $stmt->bindValue(':keyword3', '%' . $keyword3 . '&');
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}

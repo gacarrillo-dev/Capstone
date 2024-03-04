@@ -4,6 +4,9 @@
         <a class="block text-gray-300 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="userHomePage.php">
             <i class="fas fa-home mr-3 text-gray-500"></i>Home
         </a>
+        <a class="block text-gray-300 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="pastDue.php">
+            <i class="fa-regular fa-clock mr-3 text-gray-500"></i>Past Due
+        </a>
         <a class="block text-gray-300 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-red-900 hover:to-red-800 hover:text-white" href="today.php">
             <i class="fa-solid fa-inbox mr-3 text-gray-500"></i>Today
         </a>

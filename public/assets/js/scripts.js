@@ -22,6 +22,11 @@
         modal.style.display = "none";
     }
 
+    function closeSearchModal() {
+        var modal = document.getElementById("searchUserModal");
+        modal.style.display = "none";
+    }
+
     // Get the button that opens the modal
     var btn = document.getElementById("createTaskBtn");
 
@@ -30,6 +35,9 @@
 
     // Get the buttons that opens the edit modal
     var editBtns = document.querySelectorAll(`#taskTitle`)
+
+    // Get the button that opens search user modal
+    var shareBtn = document.getElementById("shareBtn")
 
     // Get the button that deletes the task
     var deleteBtns = document.querySelectorAll(`#deleteBtn`);
@@ -54,18 +62,26 @@
         taskIdInput.value = taskId;
     }
 
-    // When the user clicks the button, open the modal
+    // When the user clicks plus icon button, open the create a task modal
     btn.onclick = function() {
     console.log("Plus icon clicked.");
     var modal = document.getElementById("createTaskModal");
     modal.style.display = "block";
 }
 
+    // When the user clicks new list icon, open the create a list modal
     btn2.onclick = function() {
-    console.log("Plus icon clicked.");
+    console.log("Create list icon clicked.");
     var modal = document.getElementById("createListModal");
     modal.style.display = "block";
 }
+
+    // When the user clicks on the share button, open the search user modal
+    shareBtn.onclick = function() {
+        console.log("Share button clicked.");
+        var modal = document.getElementById("searchUserModal");
+        modal.style.display = "block";
+    }
 
     deleteBtns.forEach(deleteBtn => {
 
@@ -110,5 +126,27 @@
             showEditModal(taskId);
         }
     });
+
+    // Get the search input element
+    const searchInput = document.getElementById('searchInput');
+    const searchUserInput = document.getElementById('userSearch')
+
+    // Add an event listener to detect 'enter' key press
+    searchInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            // Submit the search form when 'enter' is pressed
+            document.getElementById('searchForm').submit();
+        }
+    });
+
+    // Add an event listener to detect 'enter' key press
+    searchUserInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            // Submit the search form when 'enter' is pressed
+            document.getElementById('searchUserForm').submit();
+        }
+    });
+
+
 
 
