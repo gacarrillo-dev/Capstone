@@ -152,7 +152,7 @@ function searchUsers($keyword, $keyword2, $keyword3)
     //prepare the SQL statement to search for users
     $stmt = $db->prepare('SELECT *
                          FROM users
-                         WHERE (username LIKE :keyword OR email LIKE :keyword2 OR first_name LIKE :keyword3)');
+                         WHERE (username LIKE :keyword OR email LIKE :keyword2 OR name LIKE :keyword3)');
     $stmt->bindValue(':keyword', '%' . $keyword . '&');
     $stmt->bindValue(':keyword2', '%' . $keyword2 . '&');
     $stmt->bindValue(':keyword3', '%' . $keyword3 . '&');
@@ -163,4 +163,30 @@ function searchUsers($keyword, $keyword2, $keyword3)
     }
 
     return $results;
+}
+
+function updateUser($user_id, $name, $email, $phone_number, $username)
+{
+    global $db;
+
+    $error_message = "";
+
+    try {
+        // Prepare and execute the SQL query to insert the user into the database
+        $stmt = $db->prepare('UPDATE users SET name = :name, email = :email, phone_number = :phone_number, username = :username WHERE user_id = :user_id');
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone_number', $phone_number);
+        $stmt->bindParam(':username', $username);
+        if ($stmt->execute()) {
+            $error_message = "Information Saved.";
+        } else {
+            // Registration failed for some other reason, show an error message
+            $error_message = "Information Save Failed.";
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
 }
