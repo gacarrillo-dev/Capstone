@@ -17,6 +17,9 @@
 
                 <!-- import sidebar -->
                 <?php require ('partials/sidebar.php'); ?>
+
+
+
                 <!-- import main page content -->
                 <?php require('partials/userDashboard.php'); ?>
             </div>

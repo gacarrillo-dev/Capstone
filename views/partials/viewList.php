@@ -28,10 +28,8 @@
                             <input type="hidden" name="taskUpdateAt" value="<?= htmlspecialchars($task['updated_at']) ?>">
 
                             <!-- Title -->
-                            <?php if ($task['is_favorite'] == 1): ?>
-                                <i class="fa-solid fa-star text-yellow-300 mr-1 text-sm"></i>
-                            <?php endif; ?>
-                            <span class="text-lg font-semibold text-stone-200 hover:underline hover:cursor-pointer hover:text-red-800" id="taskTitle"><?= htmlspecialchars($task['title']) ?></span>
+                            <h3 class="text-lg font-semibold text-stone-200 hover:underline hover:cursor-pointer hover:text-red-800 whitespace-nowrap" id="taskTitle"><?= htmlspecialchars($task['title']) ?></h3>
+
 
                             <!-- Description -->
                             <p class="mt-2 ml-5 font-medium text-gray-500" id="taskDescription"><?= htmlspecialchars($task['description']) ?></p>
@@ -44,10 +42,13 @@
 
                         </div>
 
-                        <div class="flex items-center ml-10">
+                        <div class="flex items-center ml-10 align-center">
                             <form action="" method="post" id="deleteTaskForm">
                                 <input type="hidden" name="taskId" value="<?= htmlspecialchars($task['task_id']) ?>">
-                                <i class="fa-regular fa-trash-can mr-6 text-xl text-red-800 hover:cursor-pointer hover:text-2xl hover:text-red-900" id="deleteBtn"></i>
+                                <?php if ($task['is_favorite'] == 1): ?>
+                                    <i class="fa-solid fa-star text-yellow-300 mr-6 text-lg"></i>
+                                <?php endif; ?>
+                                <i class="fa-regular fa-trash-can mr-6 text-lg text-red-800 hover:cursor-pointer hover:text-2xl hover:text-red-900" id="deleteBtn"></i>
                             </form>
                         </div>
                     </li>

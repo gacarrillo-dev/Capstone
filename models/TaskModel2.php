@@ -263,7 +263,7 @@ function findTasksDueNextSevenDaysForUser($user_id)
  * @param string $keyword - The search query from user.
  * @return array - Return the task info.
  */
-function searchTasks($user_id, $keyword, $keyword2)
+function searchTasks($user_id, $keyword, $keyword2, $keyword3)
 {
     global $db;
 
@@ -275,10 +275,11 @@ function searchTasks($user_id, $keyword, $keyword2)
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
                           WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
-                          AND (t.title LIKE :keyword  OR t.description LIKE :keyword2)');
+                          AND (t.title LIKE :keyword  OR t.description LIKE :keyword2 OR l.list_name LIKE :keyword3)');
     $stmt->bindParam(':user_id', $user_id);
     $stmt->bindValue(':keyword', '%' . $keyword . '%');
     $stmt->bindValue(':keyword2', '%' . $keyword2 . '%');
+    $stmt->bindValue(':keyword3', '%' . $keyword3 . '%');
 
     // Execute the statement
     if ($stmt->execute()) {

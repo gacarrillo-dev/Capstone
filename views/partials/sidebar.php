@@ -19,10 +19,10 @@
 
         <!-- separation border -->
 
-        <p class="block text-zinc-500 py-2.5 px-2 my-2 mt-10 text-sm font-semibold" >
+        <p class="block text-zinc-500 py-2.5 px-2 ml-1 my-2 mt-10 text-sm font-semibold" >
             My lists
         </p>
-        <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-2"></div>
+        <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-2 mx-2 mb-6"></div>
 
         <p class="block text-gray-200 py-2.5 px-4 my-2 rounded transition duration-200 hover:bg-zinc-900/80 hover:cursor-pointer font-medium" id="createListBtn">
             <i class="fa-solid fa-plus mr-4"></i>New List

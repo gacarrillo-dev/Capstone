@@ -109,7 +109,7 @@
             console.log(taskId);
             console.log(title);
             document.getElementById('taskIdEditHidden').value = taskId;
-            document.getElementById('lastUpdated').innerHTML = udpatedAt;
+            document.getElementById('lastUpdated').innerHTML = updatedAt;
             document.getElementById('taskIdEditLabel').innerHTML = taskId;
             document.getElementById('updateTitle').value = title;
             document.getElementById('updateDescription').value = description;
