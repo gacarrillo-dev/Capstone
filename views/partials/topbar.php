@@ -17,12 +17,15 @@
 
     <!-- Right side topbar -->
     <div class="space-x-5 flex flex-row">
+
         <!-- Search Bar -->
         <div class="relative max-w-md w-full">
-            <div class="absolute top-1 left-2 inline-flex items-center p-2">
-                <i class="fas fa-search text-gray-400"></i>
-            </div>
-            <input class="w-full h-10 pl-10 pr-4 py-1 text-zinc-950 text-base placeholder-gray-500 border rounded-full focus:ring focus:ring-red-800 focus:ring-opacity-80" type="search" placeholder="Searching...">
+            <form id="searchForm" action="search.php" method="get">
+                <div class="absolute top-1 left-2 inline-flex items-center p-2">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input id="searchInput" class="w-full h-10 pl-10 pr-4 py-1 text-zinc-950 text-base placeholder-gray-500 border rounded-full focus:ring focus:ring-red-800 focus:ring-opacity-80" type="search" name="query" placeholder="Searching...">
+            </form>
         </div>
 
         <!-- plus icon -->

@@ -1,7 +1,7 @@
 <!-- Page Content Area -->
 <div class="flex-1 p-4">
     <div class="block text-gray-300 font-semibold text-3xl">Favorites</div>
-    <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-2"></div>
+    <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-4"></div>
 
     <!-- Container for the 4 sections -->
     <div class="gap-4 mt-2 p-2 w-full mx-auto ">
@@ -42,6 +42,7 @@
                             </div>
 
                             <div class="flex items-center ml-10">
+                                <p class="text-amber-50 mr-6"><?= htmlspecialchars($favorite['list_name']) ?></p>
                                 <form action="" method="post" id="deleteTaskForm">
                                     <input type="hidden" name="taskId" value="<?= htmlspecialchars($favorite['task_id']) ?>">
                                     <i class="fa-regular fa-trash-can mr-6 text-xl text-red-800 hover:cursor-pointer hover:text-2xl hover:text-red-900" id="deleteBtn"></i>

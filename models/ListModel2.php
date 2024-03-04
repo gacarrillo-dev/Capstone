@@ -45,8 +45,40 @@ function createList($list_name, $is_favorite, $user_id)
         // Handle any database-related exceptions
         $error_message = "Database error: " . $e->getMessage();
     }
+}
 
-    var_dump($error_message);
+/**
+ * Updates a task in the database.
+ *
+ *  @param string $task_id - The is for the list the task is being created for.
+ *  @param string $title - The title of the task.
+ *  @param string $description - The description of the task.
+ *  @param string $due_date - The due date of the task.
+ *  @param boolean $is_favorite - Boolean if the task is favorited.
+ *  @return void $error_message - A message indicating the status of the user creation process
+ */
+function updateList($list_id, $list_name, $is_favorite)
+{
+    global $db;
+
+    $error_message = "";
+
+    try {
+        // Prepare and execute the SQL query to insert the user into the database
+        $stmt = $db->prepare('UPDATE lists SET list_name = :list_name, is_favorite = :is_favorite WHERE list_id = :list_id');
+        $stmt->bindParam('list_id', $list_id);
+        $stmt->bindParam('list_name', $list_name);
+        $stmt->bindParam(':is_favorite', $is_favorite);
+        if ($stmt->execute()) {
+            $error_message = "List updated successfully.";
+        } else {
+            // Registration failed for some other reason, show an error message
+            $error_message = "List update failed. Please try again.";
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
 }
 
 /**

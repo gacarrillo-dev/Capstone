@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "View List";
+$heading = "Past Due";
 
 session_start();
 
@@ -11,33 +11,12 @@ $user_id = $_SESSION['user_id'];
 
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
-$userSearch = filter_input(INPUT_POST, "userSearch");
 $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$users = searchUsers($userSearch, $userSearch, $userSearch);
+$pastDues = findPastDueTasksForUser($user_id);
 
-//$users =[
-//    ["username" => "gabe"],
-//    ["email" => "gacarrillo@email.neit.edu"],
-//];
-
-// Check if the user has access to the list
-$userHasAccessToList = false;
-foreach ($users_lists as $list) {
-    if ($list['list_id'] == $viewListID) {
-        $userHasAccessToList = true;
-        break;
-    }
-}
-
-if (!$userHasAccessToList) {
-    // Display an error message
-    $error_message = "You do not have access to view this list.";
-    require('../../views/error.view.php');
-    exit();
-}
 
 //Create a task
 if (isset($_POST['createTask'])) {
@@ -116,5 +95,5 @@ if (isset($_POST['updateTask'])) {
 }
 
 
-require ('../../views/list.view.php');
+require ('../../views/pastDue.view.php');
 

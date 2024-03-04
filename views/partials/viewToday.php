@@ -1,14 +1,14 @@
 <!-- Page Content Area -->
 <div class="flex-1 p-4">
     <div class="block text-gray-300 font-semibold text-3xl">Tasks Due Today</div>
-    <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-2"></div>
+    <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-4"></div>
 
     <!-- Container for the 4 sections -->
     <div class="gap-4 mt-2 p-2 w-full mx-auto ">
 
         <div class="container overflow-auto mt-6 px-3">
             <?php if (is_array($todays) && count($todays)> 0): ?>
-                <ul class="divide-y">
+                <ul class="">
                     <?php foreach ($todays as $today) : ?>
 
                         <li class="p-4 rounded-lg bg-zinc-950 my-4 flex flex-row justify-between">
@@ -42,6 +42,7 @@
                             </div>
 
                             <div class="flex items-center ml-10">
+                                <p class="text-amber-50 mr-6"><?= htmlspecialchars($today['list_name']) ?></p>
                                 <form action="" method="post" id="deleteTaskForm">
                                     <input type="hidden" name="taskId" value="<?= htmlspecialchars($today['task_id']) ?>">
                                     <i class="fa-regular fa-trash-can mr-6 text-xl text-red-800 hover:cursor-pointer hover:text-2xl hover:text-red-900" id="deleteBtn"></i>
