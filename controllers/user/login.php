@@ -48,11 +48,11 @@ if (isset($_POST['login'])) {
              * TODO: Change location to correct path.
              */
 
-            if ($user_level == 2){
+             if ($_SESSION['user_level'] == 2){
                 header('Location: userHomePage.php');
                 exit();
             }
-            elseif ($user_level == 1) {
+            elseif ($_SESSION['user_level'] == 1){
                 header('Location: adminHomePage.php');
                 exit();
             }
