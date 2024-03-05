@@ -18,7 +18,7 @@
                 <!-- import sidebar -->
                 <?php require ('partials/sidebar.php'); ?>
                 <!-- import main page content -->
-                <?php require ('partials/mainContent.php'); ?>
+                <?php require ('partials/adminMainContent.php'); ?>
             </div>
         </div>
 </main>
