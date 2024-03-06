@@ -42,7 +42,7 @@ function findUserById($id)
 
     $results = [];
 
-    $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
+    $stmt = $db->prepare('SELECT * FROM users WHERE user_id = :id');
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute() && $stmt->rowCount() > 0) {

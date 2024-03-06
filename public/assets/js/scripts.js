@@ -76,13 +76,6 @@
     modal.style.display = "block";
 }
 
-    // When the user clicks on the share button, open the search user modal
-    shareBtn.onclick = function() {
-        console.log("Share button clicked.");
-        var modal = document.getElementById("searchUserModal");
-        modal.style.display = "block";
-    }
-
     deleteBtns.forEach(deleteBtn => {
 
         deleteBtn.onclick = function() {
@@ -129,9 +122,8 @@
 
     // Get the search input element
     const searchInput = document.getElementById('searchInput');
-    const searchUserInput = document.getElementById('userSearch')
 
-    // Add an event listener to detect 'enter' key press
+    // Add an event listener to detect 'enter' key press in the top bar search
     searchInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             // Submit the search form when 'enter' is pressed
@@ -139,13 +131,8 @@
         }
     });
 
-    // Add an event listener to detect 'enter' key press
-    searchUserInput.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            // Submit the search form when 'enter' is pressed
-            document.getElementById('searchUserForm').submit();
-        }
-    });
+    console.log(editBtns);
+
 
 
 

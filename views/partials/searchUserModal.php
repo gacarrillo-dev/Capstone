@@ -1,7 +1,7 @@
 <!-- Modal backdrop -->
 <div id="searchUserModal" class="hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
     <!-- Modal Container -->
-    <div class="bg-zinc-900 p-8 rounded-lg max-w-md">
+    <div class="bg-zinc-900 p-8 rounded-lg max-w-md h-screen">
         <!-- Modal Content -->
         <h2 class="text-xl font-semibold text-gray-50">Search Users</h2>
         <div class="bg-gradient-to-r from-red-600 to-red-800 h-px mb-5 mt-2"></div>

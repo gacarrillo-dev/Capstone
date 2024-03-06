@@ -16,7 +16,7 @@ $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$users = searchUsers($userSearch, $userSearch, $userSearch);
+//$users = searchUsers($userSearch, $userSearch, $userSearch);
 
 //$users =[
 //    ["username" => "gabe"],

@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "Due Today";
+$heading = "Share";
 
 session_start();
 
@@ -94,5 +94,5 @@ if (isset($_POST['updateTask'])) {
 }
 
 
-require ('../../views/todays.view.php');
+require ('../../views/share.view.php');
 

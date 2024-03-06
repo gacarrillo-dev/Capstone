@@ -2,7 +2,7 @@
 <div id="createTaskModal" class="hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
 
     <!-- Modal Container -->
-    <div class="bg-zinc-900 p-8 rounded-lg max-w-md">
+    <div class="bg-zinc-900 p-8 rounded-lg max-w-md h-screen">
 
         <!-- Modal Content -->
         <h2 class="text-xl font-semibold text-gray-50">Create a Task</h2>

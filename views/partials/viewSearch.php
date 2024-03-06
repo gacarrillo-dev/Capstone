@@ -1,7 +1,7 @@
 <!-- Page Content Area -->
 <div class="flex-1 p-4">
     <div class="block text-gray-300 font-semibold text-3xl">Search Results</div>
-    <div class="block text-gray-300 font-semibold text-md mt-3 ml-6">Searching for: <?= $keyword ?></div>
+    <div class="block text-gray-300 font-semibold text-md mt-3 ml-6">Searching for: "<?= $keyword ?>"</div>
     <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-4"></div>
 
     <!-- Container for the 4 sections -->
