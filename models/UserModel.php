@@ -61,7 +61,7 @@ function findUserById($id)
  * @param string $email - The email of the new users.
  * @return void $error_message - A message indicating the status of the user creation process.
  */
-function createUser($username, $email, $password)
+function createUser($username, $email, $password, $user_level)
 {
     global $db;
 
@@ -70,10 +70,11 @@ function createUser($username, $email, $password)
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+        $stmt = $db->prepare('INSERT INTO users (username, password, email, user_level) VALUES (:username, :password, :email, :user_level)');
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $hashed_password);
+        $stmt->bindParam(':user_level', $user_level);
         if ($stmt->execute()) {
             // Registration successful, you can redirect to the login page or display a success message
             header('Location: login.php');
@@ -138,6 +139,68 @@ function findUserByEmail($email)
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
         }
+    } catch (PDOException $e) {
+        error_log("Database query error: " . $e->getMessage());
+    }
+
+    return $results;
+}
+
+function deleteUserByUsername($username)
+{
+    global $db;
+    try {
+        // Prepare and execute the SQL query to delete the user from the database
+        $stmt = $db->prepare('DELETE FROM users WHERE username = :username');
+        $stmt->bindParam(':username', $username);
+        if ($stmt->execute()) {
+            // User deletion successful, you can redirect to a success page or display a success message
+            echo "User deleted successfully.";
+        } else {
+            // User deletion failed for some other reason, show an error message
+            echo "User deletion failed. Please try again.";
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        echo "Database error: " . $e->getMessage();
+    }
+}
+
+/**
+ * Search for users based on username and/or email.
+ *
+ * @param string $username - The username to search for.
+ * @param string $email - The email to search for.
+ * @return array - An array containing search results.
+ */
+function searchUsers($username, $email)
+{
+    global $db;
+
+    $results = [];
+
+    try {
+        $query = 'SELECT * FROM users WHERE 1';
+        $params = [];
+
+        // Check if username is provided
+        if (!empty($username)) {
+            $query .= ' AND username LIKE :username';
+            $params[':username'] = '%' . $username . '%';
+        }
+
+        // Check if email is provided
+        if (!empty($email)) {
+            $query .= ' AND email LIKE :email';
+            $params[':email'] = '%' . $email . '%';
+        }
+
+        // Prepare and execute the SQL query
+        $stmt = $db->prepare($query);
+        $stmt->execute($params);
+
+        // Fetch the results
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log("Database query error: " . $e->getMessage());
     }
