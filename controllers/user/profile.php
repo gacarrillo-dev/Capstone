@@ -17,17 +17,16 @@ $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
 $users = searchUsers($userSearch, $userSearch, $userSearch);
+$userInfo = findUserById($user_id);
 
 //Update a task
 if (isset($_POST['updateUser'])) {
-    $user_id = intval(filter_input(INPUT_POST, 'userIdEditHidden'));
     $updateName = filter_input(INPUT_POST, 'name');
     $updateEmail = filter_input(INPUT_POST, 'email');
     $updatePhone = filter_input(INPUT_POST, 'phone');
-    $updateUsername = filter_input(INPUT_POST, 'username');
 
     // call update a task function from task model
-    updateUser($user_id, $updateName, $updateEmail, $updatePhone, $updateUsername);
+    updateUser($user_id, $updateName, $updateEmail, $updatePhone);
 
     // reload the page data
     header("Refresh:0");

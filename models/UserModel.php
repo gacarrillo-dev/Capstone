@@ -42,7 +42,7 @@ function findUserById($id)
 
     $results = [];
 
-    $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
+    $stmt = $db->prepare('SELECT * FROM users WHERE user_id = :id');
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute() && $stmt->rowCount() > 0) {
@@ -165,7 +165,7 @@ function searchUsers($keyword, $keyword2, $keyword3)
     return $results;
 }
 
-function updateUser($user_id, $name, $email, $phone_number, $username)
+function updateUser($user_id, $name, $email, $phone_number)
 {
     global $db;
 
@@ -173,12 +173,11 @@ function updateUser($user_id, $name, $email, $phone_number, $username)
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('UPDATE users SET name = :name, email = :email, phone_number = :phone_number, username = :username WHERE user_id = :user_id');
+        $stmt = $db->prepare('UPDATE users SET name = :name, email = :email, phone_number = :phone_number WHERE user_id = :user_id');
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':phone_number', $phone_number);
-        $stmt->bindParam(':username', $username);
         if ($stmt->execute()) {
             $error_message = "Information Saved.";
         } else {
