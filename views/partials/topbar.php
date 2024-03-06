@@ -38,7 +38,7 @@
         </button>
         <!-- Profile icon -->
         <button>
-            <i class="fas fa-user text-gray-300 text-lg"></i>
+            <a href="profile.php"><i class="fas fa-user text-gray-300 text-lg"></i></a>
         </button>
 
     </div>
