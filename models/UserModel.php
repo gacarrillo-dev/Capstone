@@ -52,6 +52,12 @@ function findUserById($id)
     return $results;
 }
 
+/**
+ * Grabs the users information given the user id.
+ *
+ * @param $list_id
+ * @return array|false
+ */
 function findUsersByListId($list_id)
 {
     global $db;

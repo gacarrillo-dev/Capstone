@@ -97,10 +97,10 @@ function updateTask($task_id, $title, $description, $due_date, $is_favorite)
         $stmt->bindParam(':due_date', $due_date);
         $stmt->bindParam(':is_favorite', $is_favorite);
         if ($stmt->execute()) {
-            $error_message = "Task created successfully.";
+            $error_message = "Task updated successfully.";
         } else {
             // Registration failed for some other reason, show an error message
-            $error_message = "Registration failed. Please try again.";
+            $error_message = "Update failed failed. Please try again.";
         }
     } catch (PDOException $e) {
         // Handle any database-related exceptions
