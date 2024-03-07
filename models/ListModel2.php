@@ -39,14 +39,45 @@ function createList($list_name, $is_favorite, $user_id)
 
         } else {
             // Registration failed for some other reason, show an error message
-            $error_message = "Registration failed. Please try again.";
+            $error_message = "List Creation failed. Please try again.";
         }
     } catch (PDOException $e) {
         // Handle any database-related exceptions
         $error_message = "Database error: " . $e->getMessage();
     }
+}
 
-    var_dump($error_message);
+/**
+ * Updates a task in the database.
+ *
+ *  @param string $task_id - The is for the list the task is being created for.
+ *  @param string $title - The title of the task.
+ *  @param string $description - The description of the task.
+ *  @param string $due_date - The due date of the task.
+ *  @param boolean $is_favorite - Boolean if the task is favorited.
+ *  @return void $error_message - A message indicating the status of the user creation process
+ */
+function updateList($list_id, $list_name)
+{
+    global $db;
+
+    $error_message = "";
+
+    try {
+        // Prepare and execute the SQL query to insert the user into the database
+        $stmt = $db->prepare('UPDATE lists SET list_name = :list_name WHERE list_id = :list_id');
+        $stmt->bindParam('list_id', $list_id);
+        $stmt->bindParam('list_name', $list_name);
+        if ($stmt->execute()) {
+            $error_message = "List updated successfully.";
+        } else {
+            // Registration failed for some other reason, show an error message
+            $error_message = "List update failed. Please try again.";
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
 }
 
 /**
@@ -57,10 +88,39 @@ function createList($list_name, $is_favorite, $user_id)
  */
 function get_task_count_for_list($list_id) {
     global $db;
-    $stmt = $db->prepare("SELECT COUNT(*) AS task_count FROM tasks WHERE list_id = ?");
+    $stmt = $db->prepare("SELECT COUNT(*) 
+                                AS task_count
+                                FROM tasks WHERE (list_id = ? AND is_completed = 0)");
     $stmt->execute([$list_id]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row['task_count'];
+}
+
+function shareList($user_id, $list_id){
+
+    global $db;
+    $permission_type = 1;
+
+    $error_message = "";
+
+    try{
+        $stmt = $db->prepare('INSERT INTO users_lists (user_id, list_id, permission_type) VALUES (:user_id,:list_id, :permission_type)');
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':list_id', $list_id);
+        $stmt->bindParam(':permission_type', $permission_type);
+
+        if($stmt->execute())
+        {
+            $error_message = "List shared successfully.";
+        }
+        else{
+            $error_message = "List not shared." . $list_id;
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
+
 }
 
 /**
@@ -79,4 +139,18 @@ function get_users_lists($user_id) {
     $stmt->bindParam(':permission_type', $permission_type);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Function to get the list of tasks.
+ *
+ * @param int $list_id - The ID of the list getting tasks for.
+ * @return array - Return the list of tasks.
+ */
+function get_list_info($list_id) {
+    global $db;
+    $stmt = $db->prepare("SELECT * from lists WHERE list_id = :list_id");
+    $stmt->bindParam(':list_id', $list_id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }

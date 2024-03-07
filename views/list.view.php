@@ -1,10 +1,19 @@
 <?php require('partials/head.php'); ?>
-
 <main class="">
-<!-- import create task modal -->
-<?php require('partials/createTaskModal.php'); ?>
-<!-- import create list modal -->
-<?php require('partials/createListModal.php'); ?>
+
+    <!-- import create task modal -->
+    <?php require('partials/createTaskModal.php'); ?>
+    <!-- import create list modal -->
+    <?php require('partials/createListModal.php'); ?>
+    <!-- import delete task modal -->
+    <?php require('partials/deleteTaskModal.php'); ?>
+    <!-- import edit task modal -->
+    <?php require('partials/editTaskModal.php'); ?>
+    <!-- import search user modal -->
+    <?php require('partials/searchUserModal.php'); ?>
+    <!-- import edit list modal -->
+    <?php require('partials/editListModal.php'); ?>
+
 
         <!-- page container -->
         <div class="flex flex-col h-screen bg-zinc-900">
@@ -17,11 +26,8 @@
 
                 <!-- import sidebar -->
                 <?php require ('partials/sidebar.php'); ?>
-
-
-
                 <!-- import main page content -->
-                <?php require('partials/userDashboard.php'); ?>
+                <?php require('partials/viewList.php'); ?>
             </div>
         </div>
 </main>
