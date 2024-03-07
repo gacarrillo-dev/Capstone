@@ -159,9 +159,9 @@ function searchUsers($keyword, $keyword2, $keyword3)
     $stmt = $db->prepare('SELECT *
                          FROM users
                          WHERE (username LIKE :keyword OR email LIKE :keyword2 OR name LIKE :keyword3)');
-    $stmt->bindValue(':keyword', '%' . $keyword . '&');
-    $stmt->bindValue(':keyword2', '%' . $keyword2 . '&');
-    $stmt->bindValue(':keyword3', '%' . $keyword3 . '&');
+    $stmt->bindValue(':keyword', '%' . $keyword . '%');
+    $stmt->bindValue(':keyword2', '%' . $keyword2 . '%');
+    $stmt->bindValue(':keyword3', '%' . $keyword3 . '%');
 
     // Execute the statement
     if ($stmt->execute()) {

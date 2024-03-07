@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "Share";
+$heading = "Share List";
 
 session_start();
 
@@ -15,6 +15,8 @@ $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
 $tasks = findTasksDueTodayForUser($user_id);
+$searchUserQuery = filter_input(INPUT_GET, "userSearchQuery");
+$searchUsers = searchUsers($searchUserQuery, $searchUserQuery, $searchUserQuery);
 
 
 //Create a task
@@ -87,6 +89,19 @@ if (isset($_POST['updateTask'])) {
 
     // call update a task function from task model
     updateTask($task_id, $updateTitle, $updateDescription, $updateDueDate, $updateIsFavorite);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
+}
+
+//Share a list
+if (isset($_POST['shareList'])) {
+    $userID = intval(filter_input(INPUT_POST, 'sharingUserID'));
+    $list_id = intval(filter_input(INPUT_POST, 'list_id'));
+
+    // call update a task function from task model
+    shareList($userID, $list_id);
 
     // reload the page data
     header("Refresh:0");

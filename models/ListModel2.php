@@ -39,7 +39,7 @@ function createList($list_name, $is_favorite, $user_id)
 
         } else {
             // Registration failed for some other reason, show an error message
-            $error_message = "Registration failed. Please try again.";
+            $error_message = "List Creation failed. Please try again.";
         }
     } catch (PDOException $e) {
         // Handle any database-related exceptions
@@ -57,7 +57,7 @@ function createList($list_name, $is_favorite, $user_id)
  *  @param boolean $is_favorite - Boolean if the task is favorited.
  *  @return void $error_message - A message indicating the status of the user creation process
  */
-function updateList($list_id, $list_name, $is_favorite)
+function updateList($list_id, $list_name)
 {
     global $db;
 
@@ -65,10 +65,9 @@ function updateList($list_id, $list_name, $is_favorite)
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('UPDATE lists SET list_name = :list_name, is_favorite = :is_favorite WHERE list_id = :list_id');
+        $stmt = $db->prepare('UPDATE lists SET list_name = :list_name WHERE list_id = :list_id');
         $stmt->bindParam('list_id', $list_id);
         $stmt->bindParam('list_name', $list_name);
-        $stmt->bindParam(':is_favorite', $is_favorite);
         if ($stmt->execute()) {
             $error_message = "List updated successfully.";
         } else {
@@ -89,10 +88,39 @@ function updateList($list_id, $list_name, $is_favorite)
  */
 function get_task_count_for_list($list_id) {
     global $db;
-    $stmt = $db->prepare("SELECT COUNT(*) AS task_count FROM tasks WHERE list_id = ?");
+    $stmt = $db->prepare("SELECT COUNT(*) 
+                                AS task_count
+                                FROM tasks WHERE (list_id = ? AND is_completed = 0)");
     $stmt->execute([$list_id]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row['task_count'];
+}
+
+function shareList($user_id, $list_id){
+
+    global $db;
+    $permission_type = 1;
+
+    $error_message = "";
+
+    try{
+        $stmt = $db->prepare('INSERT INTO users_lists (user_id, list_id, permission_type) VALUES (:user_id,:list_id, :permission_type)');
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':list_id', $list_id);
+        $stmt->bindParam(':permission_type', $permission_type);
+
+        if($stmt->execute())
+        {
+            $error_message = "List shared successfully.";
+        }
+        else{
+            $error_message = "List not shared." . $list_id;
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
+
 }
 
 /**

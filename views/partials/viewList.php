@@ -1,9 +1,13 @@
 <!-- Page Content Area -->
-<div class="flex-1 p-4">
-    <div class="block text-gray-300 font-semibold text-3xl"><?= $listInfo['list_name'] ?></div>
-    <div class="block text-gray-300 font-semibold text-sm mt-3 ml-6">Created at: <?= $listInfo['created_at'] ?> </div>
-    <div class="block text-gray-300 font-semibold text-sm mt-3 ml-6">Users: <?= $sharedUsersList ?></div>
-    <button name="shareBtn" id="shareBtn" class="bg-blue-400 hover:bg-blue-600 text-white text-sm ml-6 font-semibold mt-3 py-1 px-2 rounded">Share</button>
+<div class="flex-1 p-4 items-center">
+    <div class="block text-gray-300 font-semibold text-3xl"><?= $listInfo['list_name'] ?> <i class="fa-solid fa-pen-to-square text-white text-sm text-red-700 ml-1 hover:cursor-pointer hover:text-gray-500" id="editListBtn"></i></div>
+    <?php $date = new DateTime($listInfo['created_at']);
+    $formatted_date = $date->format("M j, Y");
+    ?>
+    <div class="block text-gray-300 font-semibold text-sm mt-3 ml-6">Created on: <?= $formatted_date ?> </div>
+    <div class="block text-gray-300 font-semibold text-sm mt-3 ml-6 mb-3">Users: <?= $sharedUsersList ?></div>
+    <a href="share.php" class="ml-6 mt-3 text-blue-500 hover:underline hover:text-blue-700"><i class="fa-solid fa-share-nodes mr-2"></i>Share</a>
+
     <div class="bg-gradient-to-r from-red-700 to-red-900 h-px mt-4"></div>
 
     <!-- Container for the 4 sections -->
@@ -36,8 +40,9 @@
 
                             <!-- Due Date -->
                             <div>
-                                <i class="text-white fa-solid fa-calendar-day ml-5 mt-3 mr-2"></i>
-                                <span class="text-white " id="taskDueDate"><?= htmlspecialchars($task['due_date']) ?></span>
+
+                                <i class="text-white fa-solid fa-calendar-day ml-5 mt-3 mr-2 text-orange-400"></i>
+                                <span class="text-white " id="taskDueDate"><?= htmlspecialchars($task['due_date'])?></span>
                             </div>
 
                         </div>
@@ -46,9 +51,14 @@
                             <form action="" method="post" id="deleteTaskForm">
                                 <input type="hidden" name="taskId" value="<?= htmlspecialchars($task['task_id']) ?>">
                                 <?php if ($task['is_favorite'] == 1): ?>
-                                    <i class="fa-solid fa-star text-yellow-300 mr-6 text-lg"></i>
+                                    <i class="fa-solid fa-star text-yellow-300 mr-6 text-md"></i>
+                                <?php else: ?>
+                                    <i class="fa-regular fa-star text-white text-md mr-6"></i>
                                 <?php endif; ?>
-                                <i class="fa-regular fa-trash-can mr-6 text-lg text-red-800 hover:cursor-pointer hover:text-2xl hover:text-red-900" id="deleteBtn"></i>
+                                <button name="completeTask" type="submit">
+                                    <i class="fa-regular fa-square-check mr-6 text-xl text-stone-100 hover:cursor-pointer hover:text-green-700" id="completeBtn"></i>
+                                </button>
+
                             </form>
                         </div>
                     </li>
@@ -62,3 +72,21 @@
 
     </div>
 </div>
+
+<script>
+
+    function closeShareModal() {
+        var modal = document.getElementById("editTaskModal");
+        modal.style.display = "none";
+    }
+
+    // get the button to edit list modal
+    var editListBtn = document.getElementById("editListBtn");
+
+    //When the user clicks edit list icon, open the edit a list modal
+    editListBtn.onclick = function() {
+        console.log("Edit list icon clicked.");
+        var modal = document.getElementById("editListModal");
+        modal.style.display = "block";
+    }
+</script>

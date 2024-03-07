@@ -47,7 +47,9 @@ function createTask($list_id, $title, $description, $due_date, $is_favorite)
  */
 function get_tasks($list_id) {
     global $db;
-    $stmt = $db->prepare("SELECT * from tasks WHERE list_id = :list_id");
+    $stmt = $db->prepare("SELECT * 
+                                from tasks 
+                                WHERE (list_id = :list_id AND is_completed = 0)");
     $stmt->bindParam(':list_id', $list_id);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -138,7 +140,36 @@ function findFavoriteTasksByUserId($user_id)
     $stmt = $db->prepare('SELECT t.*, l.list_name
                                 FROM tasks t JOIN users_lists ul ON t.list_id = ul.list_id
                                 JOIN lists l ON t.list_id = l.list_id
-                                WHERE ul.user_id = :user_id AND t.is_favorite = 1');
+                                WHERE ul.user_id = :user_id AND t.is_favorite = 1 AND t.is_completed = 0');
+    $stmt->bindParam(':user_id', $user_id);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
+
+/**
+ * Function to get user's completed tasks
+ *
+ * @param int $user_id - The ID of the user.
+ * @return array - Return the task info.
+ */
+function findCompletedTasksByUserId($user_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Prepare the SQL statement to fetch favorite tasks based on user ID
+    $stmt = $db->prepare('SELECT t.*, l.list_name
+                                FROM tasks t JOIN users_lists ul ON t.list_id = ul.list_id
+                                JOIN lists l ON t.list_id = l.list_id
+                                WHERE ul.user_id = :user_id AND t.is_completed = 1
+                                ORDER BY t.updated_at DESC ');
     $stmt->bindParam(':user_id', $user_id);
 
     // Execute the statement
@@ -170,7 +201,7 @@ function findPastDueTasksForUser($user_id)
                           FROM tasks t
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
-                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
+                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1 AND t.is_completed = 0)
                           AND DATE(t.due_date) < :current_date 
                           ORDER BY  t.due_date');
     $stmt->bindParam(':user_id', $user_id);
@@ -205,7 +236,7 @@ function findTasksDueTodayForUser($user_id)
                           FROM tasks t
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
-                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
+                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1 AND t.is_completed = 0)
                           AND DATE(t.due_date) = :current_date');
     $stmt->bindParam(':user_id', $user_id);
     $stmt->bindParam(':current_date', $currentDate);
@@ -242,7 +273,7 @@ function findTasksDueNextSevenDaysForUser($user_id)
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
                           WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
-                          AND (DATE(t.due_date) > :current_date AND DATE(t.due_date) <= :seven_days_later)
+                          AND (DATE(t.due_date) > :current_date AND DATE(t.due_date) <= :seven_days_later AND t.is_completed = 0)
                           ORDER BY  t.due_date');
     $stmt->bindParam(':user_id', $user_id);
     $stmt->bindParam(':current_date', $currentDate);
@@ -287,6 +318,38 @@ function searchTasks($user_id, $keyword, $keyword2, $keyword3)
     }
 
     return $results;
+}
+
+/**
+ * Completes a task in the database.
+ *
+ *  @param string $task_id - The is for the list the task is being created for.
+ *  @return void $error_message - A message indicating the status of the user creation process
+ */
+function completeTask($task_id)
+{
+    global $db;
+
+    $is_completed = 1;
+
+    $error_message = "";
+
+    try {
+        // Prepare and execute the SQL query to insert the user into the database
+        $stmt = $db->prepare('UPDATE tasks SET is_completed = :is_completed WHERE task_id = :task_id');
+        $stmt->bindParam(':task_id', $task_id);
+        $stmt->bindParam(':is_completed', $is_completed);
+
+        if ($stmt->execute()) {
+            $error_message = "Task updated successfully.";
+        } else {
+            // Registration failed for some other reason, show an error message
+            $error_message = "Update failed failed. Please try again.";
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
 }
 
 

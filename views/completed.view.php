@@ -9,8 +9,6 @@
         <?php require('partials/deleteTaskModal.php'); ?>
         <!-- import edit task modal -->
         <?php require('partials/editTaskModal.php'); ?>
-        <!-- import share list modal -->
-        <?php require('partials/shareListModal.php'); ?>
 
 
         <!-- page container -->
@@ -25,7 +23,7 @@
                 <!-- import sidebar -->
                 <?php require ('partials/sidebar.php'); ?>
                 <!-- import main page content -->
-                <?php require ('partials/viewSharing.php'); ?>
+                <?php require ('partials/viewCompleted.php'); ?>
             </div>
         </div>
     </main>

@@ -5,9 +5,9 @@
     <div class="bg-zinc-900 p-8 h-screen rounded-lg max-w-md">
 
         <!-- Modal Content -->
+        <h2 class="text-xl font-semibold text-gray-50">Edit Task</h2>
+        <div class="bg-gradient-to-r from-red-600 to-red-800 h-px mb-5 mt-2"></div>
         <form action="" id="updateTaskForm" method="post">
-            <label id="taskIdEditLabel" class="text-center text-3xl text-red-500 mb-2"></label>
-            <label for="lastUpdated" class="block text-gray-300 text-sm font-bold mb-2">Last Updated: <span id="lastUpdated"></span></label>
             <input type="hidden" name="taskIdEditHidden" id="taskIdEditHidden">
             <br/>
             <div>
