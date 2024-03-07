@@ -4,8 +4,6 @@
         <h1 class="text-3xl font-bold text-gray-200 lg:text-4xl">Organize your work and life.
         </h1>
         <p class="mt-6 text-zinc-400 font-semibold">Become focused, organized, and calm with Do It.</p>
-        <button
-            class="mt-6 rounded-full bg-red-900 px-6 py-2.5 text-center text-sm font-medium capitalize leading-5 text-white hover:bg-red-950 focus:outline-none lg:mx-0 lg:w-auto">Register</button>
     </div>
 
     <div class="mt-10 flex justify-center">

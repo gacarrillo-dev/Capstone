@@ -11,11 +11,10 @@ $user_id = $_SESSION['user_id'];
 
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
-$tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$todays = findTasksDueTodayForUser($user_id);
+$tasks = findTasksDueTodayForUser($user_id);
 
 
 //Create a task
@@ -88,6 +87,16 @@ if (isset($_POST['updateTask'])) {
 
     // call update a task function from task model
     updateTask($task_id, $updateTitle, $updateDescription, $updateDueDate, $updateIsFavorite);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
+}
+
+//complete a task
+if(isset($_POST['completeTask'])){
+    $id = filter_input(INPUT_POST, 'taskId');
+    completeTask($id);
 
     // reload the page data
     header("Refresh:0");

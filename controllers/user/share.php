@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "Past Due";
+$heading = "Share List";
 
 session_start();
 
@@ -11,11 +11,12 @@ $user_id = $_SESSION['user_id'];
 
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
-$tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$pastDues = findPastDueTasksForUser($user_id);
+$tasks = findTasksDueTodayForUser($user_id);
+$searchUserQuery = filter_input(INPUT_GET, "userSearchQuery");
+$searchUsers = searchUsers($searchUserQuery, $searchUserQuery, $searchUserQuery);
 
 
 //Create a task
@@ -94,15 +95,19 @@ if (isset($_POST['updateTask'])) {
     exit();
 }
 
-//complete a task
-if(isset($_POST['completeTask'])){
-    $id = filter_input(INPUT_POST, 'taskId');
-    completeTask($id);
+//Share a list
+if (isset($_POST['shareList'])) {
+    $userID = intval(filter_input(INPUT_POST, 'sharingUserID'));
+    $list_id = intval(filter_input(INPUT_POST, 'list_id'));
+
+    // call update a task function from task model
+    shareList($userID, $list_id);
 
     // reload the page data
     header("Refresh:0");
     exit();
 }
 
-require ('../../views/pastDue.view.php');
+
+require ('../../views/share.view.php');
 

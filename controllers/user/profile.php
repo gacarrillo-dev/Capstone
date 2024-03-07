@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "View List";
+$heading = "Profile Settings";
 
 session_start();
 
@@ -32,5 +32,6 @@ if (isset($_POST['updateUser'])) {
     header("Refresh:0");
     exit();
 }
+
 
 require ('../../views/profile.view.php');

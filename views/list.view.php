@@ -11,6 +11,8 @@
     <?php require('partials/editTaskModal.php'); ?>
     <!-- import search user modal -->
     <?php require('partials/searchUserModal.php'); ?>
+    <!-- import edit list modal -->
+    <?php require('partials/editListModal.php'); ?>
 
 
         <!-- page container -->

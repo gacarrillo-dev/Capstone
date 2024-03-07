@@ -16,7 +16,7 @@ $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$users = searchUsers($userSearch, $userSearch, $userSearch);
+//$users = searchUsers($userSearch, $userSearch, $userSearch);
 
 //$users =[
 //    ["username" => "gabe"],
@@ -109,6 +109,28 @@ if (isset($_POST['updateTask'])) {
 
     // call update a task function from task model
     updateTask($task_id, $updateTitle, $updateDescription, $updateDueDate, $updateIsFavorite);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
+}
+
+//complete a task
+if(isset($_POST['completeTask'])){
+    $id = filter_input(INPUT_POST, 'taskId');
+    completeTask($id);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
+}
+
+//update a list info
+if(isset($_POST['editList'])){
+    $ListID = $listInfo['list_id'];
+    $list_name = filter_input(INPUT_POST, 'updateListName');
+
+    updateList($ListID, $list_name);
 
     // reload the page data
     header("Refresh:0");

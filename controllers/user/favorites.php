@@ -94,6 +94,16 @@ if (isset($_POST['updateTask'])) {
     exit();
 }
 
+//complete a task
+if(isset($_POST['completeTask'])){
+    $id = filter_input(INPUT_POST, 'taskId');
+    completeTask($id);
+
+    // reload the page data
+    header("Refresh:0");
+    exit();
+}
+
 
 require ('../../views/favorites.view.php');
 

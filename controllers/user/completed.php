@@ -3,7 +3,7 @@ require ('../../models/TaskModel2.php');
 require ('../../models/ListModel2.php');
 require ('../../models/UserModel.php');
 
-$heading = "Past Due";
+$heading = "Completed";
 
 session_start();
 
@@ -15,7 +15,7 @@ $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$pastDues = findPastDueTasksForUser($user_id);
+$completed = findCompletedTasksByUserId($user_id);
 
 
 //Create a task
@@ -94,15 +94,6 @@ if (isset($_POST['updateTask'])) {
     exit();
 }
 
-//complete a task
-if(isset($_POST['completeTask'])){
-    $id = filter_input(INPUT_POST, 'taskId');
-    completeTask($id);
 
-    // reload the page data
-    header("Refresh:0");
-    exit();
-}
-
-require ('../../views/pastDue.view.php');
+require ('../../views/completed.view.php');
 

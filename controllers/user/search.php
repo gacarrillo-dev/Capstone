@@ -16,7 +16,7 @@ $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-$results = searchTasks($user_id, $keyword, $keyword);
+$results = searchTasks($user_id, $keyword, $keyword, $keyword);
 
 
 //Create a task

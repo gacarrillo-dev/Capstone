@@ -25,27 +25,31 @@
                                 <input type="hidden" name="taskUpdateAt" value="<?= htmlspecialchars($pastDue['updated_at']) ?>">
 
                                 <!-- Title -->
-                                <?php if ($pastDue['is_favorite'] == 1): ?>
-                                    <i class="fa-solid fa-star text-yellow-300 mr-1 text-sm"></i>
-                                <?php endif; ?>
-                                <span class="text-lg font-semibold text-stone-200 hover:underline hover:cursor-pointer hover:text-red-800" id="taskTitle"><?= htmlspecialchars($pastDue['title']) ?></span>
+                                <h3 class="text-lg font-semibold text-stone-200 hover:underline hover:cursor-pointer hover:text-red-800" id="taskTitle"><?= htmlspecialchars($pastDue['title']) ?></h3>
 
                                 <!-- Description -->
                                 <p class="mt-2 ml-5 font-medium text-gray-500" id="taskDescription"><?= htmlspecialchars($pastDue['description']) ?></p>
 
                                 <!-- Due Date -->
                                 <div>
-                                    <i class="text-white fa-solid fa-calendar-day ml-5 mt-3 mr-2"></i>
+                                    <i class="text-orange-400 fa-solid fa-calendar-day ml-5 mt-3 mr-2"></i>
                                     <span class="text-white " id="taskDueDate"><?= htmlspecialchars($pastDue['due_date']) ?></span>
                                 </div>
 
                             </div>
 
                             <div class="flex items-center ml-10">
-                                <p class="text-amber-50 mr-6"><?= htmlspecialchars($pastDue['list_name']) ?></p>
+                                <p class="text-red-800 font-medium mr-6"><?= htmlspecialchars($pastDue['list_name']) ?></p>
                                 <form action="" method="post" id="deleteTaskForm">
                                     <input type="hidden" name="taskId" value="<?= htmlspecialchars($pastDue['task_id']) ?>">
-                                    <i class="fa-regular fa-trash-can mr-6 text-xl text-red-800 hover:cursor-pointer hover:text-2xl hover:text-red-900" id="deleteBtn"></i>
+                                    <?php if ($pastDue['is_favorite'] == 1): ?>
+                                        <i class="fa-solid fa-star text-yellow-300 mr-6 text-md"></i>
+                                    <?php else: ?>
+                                        <i class="fa-regular fa-star text-white text-md mr-6"></i>
+                                    <?php endif; ?>
+                                    <button name="completeTask" type="submit">
+                                        <i class="fa-regular fa-square-check mr-6 text-xl text-stone-100 hover:cursor-pointer hover:text-green-700" id="completeBtn"></i>
+                                    </button>
                                 </form>
                             </div>
                         </li>
