@@ -6,7 +6,7 @@
 
     <!-- Container for the 4 sections -->
     <div class="gap-4 mt-2 p-2 w-full mx-auto ">
-                <h2 class="mt-4 text-white">Sorry, You do not have access to this list.</h2>
+                <h2 class="mt-4 text-white">Sorry, You do not have access to this page.</h2>
         </div>
 
     </div>

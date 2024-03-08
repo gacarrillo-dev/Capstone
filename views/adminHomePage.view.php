@@ -1,6 +1,6 @@
 <?php require('partials/head.php'); ?>
-
 <main class="">
+
 <!-- import create task modal -->
 <?php require('partials/createTaskModal.php'); ?>
 <!-- import create list modal -->
@@ -10,16 +10,13 @@
         <div class="flex flex-col h-screen bg-zinc-900">
 
             <!-- import top bar -->
-            <?php require ('partials/topbar.php'); ?>
+            <?php require ('partials/adminTopbar.php'); ?>
 
             <!-- main page container -->
             <div class="flex-1 flex">
 
                 <!-- import sidebar -->
-                <?php require ('partials/sidebar.php'); ?>
-
-
-
+                <?php require ('partials/adminSidebar.php'); ?>
                 <!-- import main page content -->
                 <?php require('partials/adminDashboard.php'); ?>
             </div>

@@ -8,7 +8,7 @@ $heading = "View List";
 session_start();
 
 $user_id = $_SESSION['user_id'];
-
+$user_info = findUserById($user_id);
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
 $userSearch = filter_input(INPUT_POST, "userSearch");
