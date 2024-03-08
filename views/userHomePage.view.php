@@ -21,7 +21,7 @@
 
 
                 <!-- import main page content -->
-                <?php require('partials/userDashboard.php'); ?>
+                <?php require('partials/adminDashboard.php'); ?>
             </div>
         </div>
 </main>

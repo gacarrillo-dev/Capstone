@@ -12,6 +12,7 @@ $user_id = $_SESSION['user_id'];
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
 $listInfo = get_list_info($viewListID);
+$user_info = findUserById($user_id);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
 $tasks = findTasksDueTodayForUser($user_id);

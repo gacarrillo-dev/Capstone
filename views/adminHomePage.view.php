@@ -10,15 +10,15 @@
         <div class="flex flex-col h-screen bg-zinc-900">
 
             <!-- import top bar -->
-            <?php require ('partials/topbar.php'); ?>
+            <?php require ('partials/adminTopbar.php'); ?>
 
             <!-- main page container -->
             <div class="flex-1 flex">
 
                 <!-- import sidebar -->
-                <?php require ('partials/sidebar.php'); ?>
+                <?php require ('partials/adminSidebar.php'); ?>
                 <!-- import main page content -->
-                <?php require ('partials/mainContent.php'); ?>
+                <?php require('partials/adminDashboard.php'); ?>
             </div>
         </div>
 </main>

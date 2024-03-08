@@ -149,16 +149,8 @@ function updateUserPassword($username, $password)
  * @param string $email - The email used to search for the user.
  * @return array - An array containing user details associated with the provided email.
  */
-function findUserByEmail($email)
- * Function to search users in the database.
- *
- * @param string $keyword - The search query to find user.
- * @return array - Return the array of users matching the keyword.
- */
-function searchUsers($keyword, $keyword2, $keyword3)
-{
+function findUserByEmail($email){
     global $db;
-
     $results = [];
 
     try {
@@ -173,6 +165,19 @@ function searchUsers($keyword, $keyword2, $keyword3)
     }
 
     return $results;
+}
+
+/** Function to search users in the database.
+ *
+ * @param string $keyword - The search query to find user.
+ * @return array - Return the array of users matching the keyword.
+ */
+function searchUsers($keyword, $keyword2, $keyword3)
+{
+    global $db;
+
+    $results = [];
+
     //prepare the SQL statement to search for users
     $stmt = $db->prepare('SELECT *
                          FROM users
@@ -189,6 +194,16 @@ function searchUsers($keyword, $keyword2, $keyword3)
     return $results;
 }
 
+
+/**
+ * Function to update the user information.
+ *
+ * @param $user_id - The id of the user that needs to be updated
+ * @param $name - The user's name.
+ * @param $email - The user's email.
+ * @param $phone_number - The user's phone number.
+ * @return void
+ */
 function updateUser($user_id, $name, $email, $phone_number)
 {
     global $db;
