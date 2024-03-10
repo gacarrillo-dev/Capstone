@@ -228,18 +228,17 @@ function findTasksDueTodayForUser($user_id)
 
     $results = [];
 
-    // Get the current date
-    $currentDate = date('Y-m-d');
-
     // Prepare the SQL statement to fetch tasks due today
     $stmt = $db->prepare('SELECT t.*, l.list_name
                           FROM tasks t
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
-                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1 AND t.is_completed = 0)
-                          AND DATE(t.due_date) = :current_date');
+                          WHERE ul.user_id = :user_id 
+                          AND ul.permission_type = 1 
+                          AND t.is_completed = 0
+                          AND DATE(t.due_date) = CURDATE()'); // Use CURDATE() to get current date
+
     $stmt->bindParam(':user_id', $user_id);
-    $stmt->bindParam(':current_date', $currentDate);
 
     // Execute the statement
     if ($stmt->execute() && $stmt->rowCount() > 0) {
@@ -248,6 +247,7 @@ function findTasksDueTodayForUser($user_id)
 
     return $results;
 }
+
 
 /**
  * Function to get user's tasks due in the next 7 days
@@ -261,23 +261,19 @@ function findTasksDueNextSevenDaysForUser($user_id)
 
     $results = [];
 
-    // Get the current date
-    $currentDate = date('Y-m-d');
-
-    // Calculate the date 7 days from now
-    $sevenDaysLater = date('Y-m-d', strtotime('+7 days', strtotime($currentDate)));
-
     // Prepare the SQL statement to fetch tasks due in the next 7 days
     $stmt = $db->prepare('SELECT t.*, l.list_name
                           FROM tasks t
                           INNER JOIN lists l ON t.list_id = l.list_id
                           INNER JOIN users_lists ul ON l.list_id = ul.list_id
-                          WHERE (ul.user_id = :user_id AND ul.permission_type = 1)
-                          AND (DATE(t.due_date) > :current_date AND DATE(t.due_date) <= :seven_days_later AND t.is_completed = 0)
-                          ORDER BY  t.due_date');
+                          WHERE ul.user_id = :user_id 
+                          AND ul.permission_type = 1 
+                          AND DATE(t.due_date) > CURDATE() 
+                          AND DATE(t.due_date) <= DATE_ADD(CURDATE(), INTERVAL 7 DAY) 
+                          AND t.is_completed = 0
+                          ORDER BY t.due_date');
+
     $stmt->bindParam(':user_id', $user_id);
-    $stmt->bindParam(':current_date', $currentDate);
-    $stmt->bindParam(':seven_days_later', $sevenDaysLater);
 
     // Execute the statement
     if ($stmt->execute() && $stmt->rowCount() > 0) {
@@ -286,6 +282,7 @@ function findTasksDueNextSevenDaysForUser($user_id)
 
     return $results;
 }
+
 
 /**
  * Function to get user's results for a search

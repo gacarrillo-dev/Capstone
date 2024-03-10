@@ -32,14 +32,19 @@
 
                                 <!-- Due Date -->
                                 <div>
-                                    <i class="text-orange-400 fa-solid fa-calendar-day ml-5 mt-3 mr-2"></i>
-                                    <span class="text-white " id="taskDueDate"><?= htmlspecialchars($favorite['due_date']) ?></span>
+                                    <?php $due_date = new DateTime($favorite['due_date']);
+                                    $formatted_due_date = $due_date->format("M j, Y");
+                                    ?>
+                                    <!-- Hidden due date -->
+                                    <input type="hidden" id="taskDueDate" name="taskDueDate" value="<?= htmlspecialchars($favorite['due_date']) ?>">
+                                    <i class="text-red-800 fa-solid fa-calendar-day ml-5 mt-3 mr-2"></i>
+                                    <span class="text-white"><?= $formatted_due_date?></span>
                                 </div>
 
                             </div>
 
                             <div class="flex items-center ml-10">
-                                <p class="text-red-800 font-medium mr-6"><?= htmlspecialchars($favorite['list_name']) ?></p>
+                                <p class="text-orange-400/85 font-medium mr-6"><?= htmlspecialchars($favorite['list_name']) ?></p>
                                 <form action="" method="post" id="deleteTaskForm">
                                     <input type="hidden" name="taskId" value="<?= htmlspecialchars($favorite['task_id']) ?>">
                                     <?php if ($favorite['is_favorite'] == 1): ?>

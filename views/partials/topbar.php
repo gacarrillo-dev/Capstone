@@ -36,10 +36,6 @@
         <button id="createTaskBtn">
             <i class="fa-solid fa-circle-plus text-gray-300 text-2xl"></i>
         </button>
-        <!-- notification icon -->
-        <button>
-            <i class="fas fa-bell text-gray-300 text-2xl"></i>
-        </button>
         <!-- Profile icon -->
         <div class="flex item-center">
             <div id="dropdown-button" class="hover:cursor-pointer flex flex-row items-center">
@@ -75,13 +71,8 @@
 
         <script>
         const dropdownButton = document.getElementById('dropdown-button');
-        const dropdownMenu = document.getElementById('dropdown-menu'); <<
-        << << < HEAD
-        let isDropdownOpen = false; // Set to true to open the dropdown by default, false to close it by default
-        ===
-        === =
-        let isDropdownOpen = true; >>>
-        >>> > main
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        let isDropdownOpen = true;
 
         // Function to toggle the dropdown
         function toggleDropdown() {

@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="flex items-center ml-10">
-                                <p class="text-amber-50 mr-6"><?= htmlspecialchars($complete['list_name']) ?></p>
+                                <p class="text-orange-400/85 font-medium mr-6"><?= htmlspecialchars($complete['list_name']) ?></p>
                                 <?php if ($complete['is_favorite'] == 1): ?>
                                     <i class="fa-solid fa-star text-yellow-300 mr-5 text-lg"></i>
                                 <?php else: ?>

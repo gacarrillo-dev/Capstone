@@ -107,7 +107,7 @@
             var taskId = this.parentElement.querySelector('input[name="taskId"]').value;
             var title = this.parentElement.querySelector(`#taskTitle`).innerText;
             var description = this.parentElement.querySelector(`#taskDescription`).innerText;
-            var dueDate = this.parentElement.querySelector(`#taskDueDate`).innerText;
+            var dueDate = this.parentElement.querySelector(`input[name="taskDueDate"]`).value;
             var favorite = this.parentElement.querySelector('input[name="taskFavorite"]').value;
             var updatedAt = this.parentElement.querySelector('input[name="taskUpdateAt"]').value;
 

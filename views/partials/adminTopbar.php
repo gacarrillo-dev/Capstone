@@ -20,22 +20,14 @@
 
         <!-- Search Bar -->
         <div class="relative max-w-md w-full">
-            <form id="searchForm" action="search.php" method="get">
+            <form id="" action="" method="get">
                 <div class="absolute top-1 left-2 inline-flex items-center p-2">
                     <i class="fas fa-search text-gray-400"></i>
                 </div>
-                <input id="searchInput" class="w-full h-10 pl-10 pr-4 py-1 text-zinc-950 text-base placeholder-gray-500 border rounded-full focus:ring focus:ring-red-800 focus:ring-opacity-80" type="search" name="query" placeholder="Search tasks...">
+                <input id="searchInput" class="w-full h-10 pl-10 pr-4 py-1 text-zinc-950 text-base placeholder-gray-500 border rounded-full focus:ring focus:ring-red-800 focus:ring-opacity-80" type="search" name="queryAdmin" placeholder="Search users...">
             </form>
         </div>
 
-        <!-- plus icon -->
-        <button id="createTaskBtn">
-            <i class="fa-solid fa-circle-plus text-gray-300 text-2xl"></i>
-        </button>
-        <!-- notification icon -->
-        <button>
-            <i class="fas fa-bell text-gray-300 text-2xl"></i>
-        </button>
         <!-- Profile icon -->
         <div class="flex item-center">
                 <div id="dropdown-button" class="hover:cursor-pointer flex flex-row items-center">
