@@ -31,7 +31,7 @@
             <div class="w-full py-6 z-20">
                 <!-- Logo -->
                 <h1 class="my-6 text-5xl font-medium hover:text-red-900">
-                    <a href="../controllers/user/index.php"><i class="fa-solid fa-calendar-days mr-4 text-red-900"></i>do it.</a>
+                    <a href="../index.php"><i class="fa-solid fa-calendar-days mr-4 text-red-900"></i>do it.</a>
                 </h1>
 
                 <!-- Login Form -->
@@ -51,6 +51,9 @@
                     <div class="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden ">
                     </div>
                 </form>
+                <?php if (isset($_POST['login']) && (!empty($error_message))) : ?>
+                    <p class="text-red-500"><?php echo $error_message; ?></p>
+                <?php endif; ?>
             </div>
         </div>
     </section>

@@ -19,14 +19,24 @@ if (isset($_POST['Register'])) {
 
     // Check if the username already exists
     $existingUser = findUserByUsername($username);
+    // Check if the email already exists
+    $existingEmail = findUserByEmail($email);
 
     if (!empty($existingUser)) {
         // Username already exists, set an error message
-        $error_message = "Username already exists. Please try a different username.";
+        $error_message .= "Username already exists. ";
+    }
+    // Validate email
+    if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $error_message .= "Invalid email format. ";
+    }
+    if (!empty($existingEmail)) {
+        // Username already exists, set an error message
+        $error_message .= "Email already exists. ";
     }
     //check if username and password are empty
     if (empty($username) || empty($email) || empty($password)) {
-        $error_message = 'Username, Email, and Password are required';
+        $error_message .= 'Username, Email, and Password are required';
     }
 } elseif (isset($_POST['Cancel'])) {
     // Redirect to the login page if the 'Cancel' button is pressed

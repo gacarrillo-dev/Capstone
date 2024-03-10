@@ -13,7 +13,6 @@
     </section>
 
     <div class="container mx-auto px-6 py-5 text-center">
-        <h2 class="text-center text-gray-300">More content of the site goes here. </h2>
         <br>
         <br>
         <br>
