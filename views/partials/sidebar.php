@@ -35,7 +35,7 @@
             $task_count = get_task_count_for_list($user_list['list_id']);
             ?>
             <a class="block text-gray-200 py-2.5 px-4 my-4 rounded transition duration-300 hover:bg-zinc-700/40 hover:text-white flex justify-between items-center" href="list.php?listID=<?= htmlspecialchars($user_list['list_id']) ?>">
-                <span><i class="fa-solid fa-list-ul mr-2 text-gray-500 text-sm"></i><?= htmlspecialchars($user_list['list_name']) ?></span>
+                <span><i class="fa-regular fa-circle text-xs mr-2 text-gray-500"></i><?= htmlspecialchars($user_list['list_name']) ?></span>
                 <?php if ($task_count > 0) : ?>
                     <span class="text-red-800 font-semibold ml-auto"><?= $task_count ?></span>
                 <?php endif; ?>

@@ -11,12 +11,36 @@ $user_id = $_SESSION['user_id'];
 $user_info = findUserById($user_id);
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
-$keyword = filter_input(INPUT_GET, "query");
+//$keyword = filter_input(INPUT_GET, "query");
 $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
+//$results = searchTasks($user_id, $keyword, $keyword, $keyword);
+
+$keyword = filter_input(INPUT_GET, "query");
+$statusFilter = filter_input(INPUT_GET, "status", FILTER_SANITIZE_STRING);
+$listIDFilter = filter_input(INPUT_GET, "listID", FILTER_SANITIZE_NUMBER_INT);
+
 $results = searchTasks($user_id, $keyword, $keyword, $keyword);
+// Ensure $lists is populated
+$lists = get_users_lists($user_id);
+
+// Apply filters
+if ($statusFilter !== 'all') {
+    $results = array_filter($results, function ($result) use ($statusFilter) {
+        return ($statusFilter === 'completed' && $result['is_completed'] == 1) ||
+            ($statusFilter === 'incomplete' && $result['is_completed'] == 0);
+    });
+}
+
+if (!empty($listIDFilter)) {
+    $results = array_filter($results, function ($result) use ($listIDFilter) {
+        return $result['list_id'] == $listIDFilter;
+    });
+}
+
+
 
 
 //Create a task
