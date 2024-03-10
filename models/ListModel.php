@@ -154,3 +154,24 @@ function get_list_info($list_id) {
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+/**
+ * Function to delete the task.
+ * @param int $user_id - The ID of the user to delete list from
+ * @param int $list_id - The ID of the list to delete
+ * @return array - return the result message
+ */
+function deleteList ($user_id, $list_id){ //CRUD operation to delete list from database
+    global $db;
+    $results = [];
+    $sql = "DELETE FROM users_lists WHERE user_id = :user_id AND list_id = :list_id";
+    $stmt = $db->prepare($sql);
+    $binds = array(
+        ":user_id" => $user_id,
+        ":list_id" => $list_id
+    );
+    if($stmt->execute($binds) && $stmt->rowCount() > 0) {
+        $results = 'List has been deleted';
+    }
+    return ($results);
+}

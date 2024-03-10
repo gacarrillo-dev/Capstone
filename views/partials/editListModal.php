@@ -1,5 +1,5 @@
 <!-- Modal backdrop -->
-<div id="editListModal" class="hidden fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
+<div id="editListModal" class="hidden transition duration-500 fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
 
     <!-- Modal Container -->
     <div class="bg-zinc-900 p-8 rounded-lg max-w-md h-screen">
@@ -16,6 +16,7 @@
             <div class="text-left">
                 <button name="cancel" class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" onclick="closeEditListModal()">Cancel</button>
                 <button type="submit" name="editList" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
+                <button type="submit" name="deleteList" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-20">Delete</button>
             </div>
         </form>
     </div>

@@ -1,6 +1,6 @@
 <?php
-require ('../../models/TaskModel2.php');
-require ('../../models/ListModel2.php');
+require('../../models/TaskModel.php');
+require('../../models/ListModel.php');
 require ('../../models/UserModel.php');
 
 $heading = "Past Due";
@@ -65,11 +65,22 @@ if (isset($_POST['createList'])){
 
 //delete task
 if(isset($_POST['deleteTask'])){
-    $id = filter_input(INPUT_POST, 'taskIdHidden');
+    $id = filter_input(INPUT_POST, 'taskIdEditHidden');
     deleteTask($id);
 
     // reload the page data
     header("Refresh:0");
+    exit();
+}
+
+//delete List
+if(isset($_POST['deleteList'])){
+    $listID = filter_input(INPUT_GET, "listID");
+    $userID = $_SESSION['user_id'];
+    deleteList($userID, $listID);
+
+    // reload the page data
+    header('Location: today.php');
     exit();
 }
 

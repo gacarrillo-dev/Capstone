@@ -1,6 +1,6 @@
 <?php
-require ('../../models/TaskModel2.php');
-require ('../../models/ListModel2.php');
+require('../../models/TaskModel.php');
+require('../../models/ListModel.php');
 require ('../../models/AdminModel.php');
 require ('../../models/UserModel.php');
 

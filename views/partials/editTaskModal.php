@@ -16,7 +16,7 @@
             </div>
             <div class="mt-5">
                 <label for="updateDescription" class="block text-gray-300 text-sm font-bold mb-2">Description:</label>
-                <textarea id="updateDescription" name="updateDescription" class="w-full border border-gray-400 bg-zinc-950/80 text-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" rows="4"></textarea>
+                <textarea id="updateDescription" name="updateDescription" class="w-full border border-gray-400 bg-zinc-950/80 text-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" rows="4" required></textarea>
             </div>
             <div class="mt-5">
                 <label for="updateDueDate" class="block text-gray-300 text-sm font-bold mb-2">Due Date:</label>
@@ -30,6 +30,7 @@
             <div class="text-left mt-5">
                 <button name="cancel" class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" onclick="closeEditModal()">Cancel</button>
                 <button type="submit" name="updateTask" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
+                <button type="submit" name="deleteTask" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-20">Delete</button>
             </div>
         </form>
 

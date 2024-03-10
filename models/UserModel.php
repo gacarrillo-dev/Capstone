@@ -85,7 +85,7 @@ function findUsersByListId($list_id)
  * @param string $email - The email of the new users.
  * @return void $error_message - A message indicating the status of the user creation process.
  */
-function createUser($username, $email, $password)
+function createUser($username, $email, $name, $password)
 {
     global $db;
 
@@ -94,9 +94,10 @@ function createUser($username, $email, $password)
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+        $stmt = $db->prepare('INSERT INTO users (username, password, name, email) VALUES (:username, :password, :email, :name)');
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':name', $name);
         $stmt->bindParam(':password', $hashed_password);
         if ($stmt->execute()) {
             // Registration successful, you can redirect to the login page or display a success message

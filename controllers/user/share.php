@@ -1,6 +1,6 @@
 <?php
-require ('../../models/TaskModel2.php');
-require ('../../models/ListModel2.php');
+require('../../models/TaskModel.php');
+require('../../models/ListModel.php');
 require ('../../models/UserModel.php');
 
 $heading = "Share List";
@@ -110,4 +110,3 @@ if (isset($_POST['shareList'])) {
 
 
 require ('../../views/share.view.php');
-

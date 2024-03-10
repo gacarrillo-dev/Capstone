@@ -20,10 +20,13 @@
                     <label for="email" class="block text-gray-400 text-sm font-semibold mb-2">Email Address *</label>
                     <input type="email" name="email" id="email" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="himothy@gmail.com">
                 </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-400 text-sm font-semibold mb-2">Full Name *</label>
+                    <input type="text" name="name" id="name" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-blue-500" required placeholder="Himmy Neutron">
+                </div>
                 <div class="mb-6">
                     <label for="password" class="block text-gray-400 text-sm font-semibold mb-2">Password *</label>
                     <input type="password" name="password" id="password" class="bg-stone-200 form-input w-full px-4 py-2 border rounded-lg text-gray-700 focus:ring-red-900" required placeholder="••••••••">
-                    <p class="text-gray-300 text-xs mt-1">Must contain 1 uppercase letter, 1 number, min. 8 characters.</p>
                 </div>
                 <input type="submit" name="Register" value="Register" class="w-full bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
                 <p class="text-gray-400 text-xs text-center mt-4">

@@ -40,9 +40,13 @@
 
                             <!-- Due Date -->
                             <div>
-
-                                <i class="text-white fa-solid fa-calendar-day ml-5 mt-3 mr-2 text-orange-400"></i>
-                                <span class="text-white " id="taskDueDate"><?= htmlspecialchars($task['due_date'])?></span>
+                                <?php $due_date = new DateTime($task['due_date']);
+                                $formatted_due_date = $due_date->format("M j, Y");
+                                ?>
+                                <!-- Hidden due date -->
+                                <input type="hidden" id="taskDueDate" name="taskDueDate" value="<?= htmlspecialchars($task['due_date']) ?>">
+                                <i class="text-red-800 fa-solid fa-calendar-day ml-5 mt-3 mr-2"></i>
+                                <span class="text-white"><?= $formatted_due_date?></span>
                             </div>
 
                         </div>

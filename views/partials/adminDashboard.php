@@ -65,7 +65,7 @@
 
         <!-- Section 3 -->
         <div class="bg-zinc-950/85 p-4 rounded-md">
-            <h2 class="text-gray-300 text-lg font-semibold pb-4">Favorites</h2>
+            <h2 class="text-gray-300 text-lg font-semibold pb-4">Section 3</h2>
             <div class="my-1"></div> <!-- bottom border -->
             <div class="bg-gradient-to-r from-red-600 to-red-800 h-px mb-6"></div> <!-- border -->
 
@@ -79,7 +79,7 @@
 
         <!-- Section 4 -->
         <div class="bg-zinc-950/85 p-4 rounded-md ">
-            <h2 class="text-gray-300 text-lg font-semibold pb-4">Lists</h2>
+            <h2 class="text-gray-300 text-lg font-semibold pb-4">Section 4</h2>
             <div class="my-1"></div> <!-- bottom border -->
             <div class="bg-gradient-to-r from-red-600 to-red-800 h-px mb-6"></div> <!-- border gradient -->
 
