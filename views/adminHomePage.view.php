@@ -12,7 +12,7 @@ require('partials/head.php'); ?>
         <div class="flex flex-col h-screen bg-zinc-900">
 
             <!-- import top bar -->
-            <?php require ('partials/topbar.php'); ?>
+            <?php require ('partials/adminTopbar.php'); ?>
 
             <!-- main page container -->
             <div class="flex-1 flex">

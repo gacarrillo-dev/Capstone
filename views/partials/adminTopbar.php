@@ -16,10 +16,10 @@
     </div>
 
     <!-- Right side topbar -->
-    <div class="space-x-5 flex flex-row">
+    <div class="space-x-5 flex flex-row items-center">
 
         <!-- Search Bar -->
-        <div class="relative max-w-md w-full items-center">
+        <div class="relative max-w-md w-full">
             <form id="searchForm" action="search.php" method="get">
                 <div class="absolute top-1 left-2 inline-flex items-center p-2">
                     <i class="fas fa-search text-gray-400"></i>
@@ -38,26 +38,23 @@
         </button>
         <!-- Profile icon -->
         <div class="flex item-center">
-            <div id="dropdown-button" class="hover:cursor-pointer flex flex-row items-center">
-                <i class="fa-solid fa-circle-user text-gray-300 text-2xl mr-3"></i>
-                <div class="mr-3">
-                    <p class="whitespace-nowrap text-sm"><?= $user_info['name'] ?></p>
-                    <?php if ($user_info['user_level'] == 1): ?>
-                        <p class="text-blue-500 text-sm font-medium" id="">Admin</p>
-                    <?php endif; ?>
-                </div>
-            </div>
+                <div id="dropdown-button" class="hover:cursor-pointer flex flex-row items-center">
+                        <i class="fa-solid fa-circle-user text-gray-300 text-2xl mr-3"></i>
+                        <div class="mr-3">
+                            <p class="whitespace-nowrap text-sm"><?= $user_info['name'] ?></p>
+                            <?php if ($user_info['user_level'] == 1): ?>
+                                <p class="text-blue-500 text-sm font-medium" id="">Admin</p>
+                            <?php endif; ?>
 
+                        </div>
+                </div>
             <div id="dropdown-menu" class="origin-top-right absolute right-0 mt-8 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
                 <div class="py-2 p-2" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-button">
                     <?php if($_SESSION['user_level'] == 1): ?>
-                        <a class="flex items-center block rounded-md px-4 py-2 text-md text-black hover:bg-gray-200 active:bg-blue-100 cursor-pointer" role="menuitem" href="adminHomePage.php">
-                            <i class="fa-solid fa-desktop mr-3"></i>Admin Mode
+                        <a class="flex items-center block rounded-md px-4 py-2 text-md text-black hover:bg-gray-200 active:bg-blue-100 cursor-pointer" role="menuitem" href="today.php">
+                            <i class="fa-solid fa-desktop mr-3"></i>User Mode
                         </a>
                     <?php endif; ?>
-                    <a class="flex items-center block rounded-md px-4 py-2 text-md text-black hover:bg-gray-200 active:bg-blue-100 cursor-pointer" role="menuitem" href="profile.php">
-                        <i class="fa-regular fa-id-card mr-3"></i> Profile Settings
-                    </a>
                     <a class="flex items-center block rounded-md px-4 py-2 text-md text-black hover:bg-gray-200 active:bg-blue-100 cursor-pointer" role="menuitem" href="logout.php">
                         <i class="fa-solid fa-right-from-bracket mr-3"></i> Logout
                     </a>

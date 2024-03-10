@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
      * TODO: Change location to correct path.
      */
     if ($user_level == 2){
-        header('Location: userHomePage.php');
+        header('Location: today.php');
         exit();
     }
     elseif ($user_level == 1) {
@@ -43,13 +43,14 @@ if (isset($_POST['login'])) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['user_level'] = $user['user_level'];
+            $_SESSION['name'] = $user['name'];
 
             /**
              * TODO: Change location to correct path.
              */
 
              if ($_SESSION['user_level'] == 2){
-                header('Location: userHomePage.php');
+                header('Location: today.php');
                 exit();
             }
             elseif ($_SESSION['user_level'] == 1){

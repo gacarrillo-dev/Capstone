@@ -42,11 +42,35 @@ function findUserById($id)
 
     $results = [];
 
-    $stmt = $db->prepare('SELECT * FROM users WHERE id = :id');
+    $stmt = $db->prepare('SELECT * FROM users WHERE user_id = :id');
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute() && $stmt->rowCount() > 0) {
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return $results;
+}
+
+/**
+ * Grabs the users information given the user id.
+ *
+ * @param $list_id
+ * @return array|false
+ */
+function findUsersByListId($list_id)
+{
+    global $db;
+
+    $results = [];
+
+    // Prepare the SQL statement to fetch user details based on list ID
+    $stmt = $db->prepare('SELECT u.* FROM users_lists ul JOIN users u ON ul.user_id = u.user_id WHERE ul.list_id = :list_id');
+    $stmt->bindParam(':list_id', $list_id);
+
+    // Execute the statement
+    if ($stmt->execute() && $stmt->rowCount() > 0) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     return $results;
@@ -126,10 +150,8 @@ function updateUserPassword($username, $password)
  * @param string $email - The email used to search for the user.
  * @return array - An array containing user details associated with the provided email.
  */
-function findUserByEmail($email)
-{
+function findUserByEmail($email){
     global $db;
-
     $results = [];
 
     try {
@@ -174,6 +196,12 @@ function deleteUserByUsername($username)
  * @return array - An array containing search results.
  */
 function searchUsers($username, $email)
+/** Function to search users in the database.
+ *
+ * @param string $keyword - The search query to find user.
+ * @return array - Return the array of users matching the keyword.
+ */
+function searchUsers($keyword, $keyword2, $keyword3)
 {
     global $db;
 
@@ -206,4 +234,39 @@ function searchUsers($username, $email)
     }
 
     return $results;
+}
+
+
+/**
+ * Function to update the user information.
+ *
+ * @param $user_id - The id of the user that needs to be updated
+ * @param $name - The user's name.
+ * @param $email - The user's email.
+ * @param $phone_number - The user's phone number.
+ * @return void
+ */
+function updateUser($user_id, $name, $email, $phone_number)
+{
+    global $db;
+
+    $error_message = "";
+
+    try {
+        // Prepare and execute the SQL query to insert the user into the database
+        $stmt = $db->prepare('UPDATE users SET name = :name, email = :email, phone_number = :phone_number WHERE user_id = :user_id');
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone_number', $phone_number);
+        if ($stmt->execute()) {
+            $error_message = "Information Saved.";
+        } else {
+            // Registration failed for some other reason, show an error message
+            $error_message = "Information Save Failed.";
+        }
+    } catch (PDOException $e) {
+        // Handle any database-related exceptions
+        $error_message = "Database error: " . $e->getMessage();
+    }
 }
