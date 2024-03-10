@@ -15,8 +15,7 @@
             </div>
 
             <div class="flex items-center">
-                <input type="checkbox" id="isFavoriteList" name="isFavoriteList" class="mr-2" value="1">
-                <label for="isFavorite" class="text-gray-300 text-sm font-bold">Add to Favorites</label>
+                <input type="hidden" id="isFavoriteList" name="isFavoriteList" class="mr-2" value="1">
             </div>
             <div class="text-left">
                 <button name="cancel" class="bg-gray-400 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded" onclick="closeListModal()">Cancel</button>

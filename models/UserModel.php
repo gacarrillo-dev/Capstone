@@ -131,7 +131,7 @@ function updateUserPassword($username, $password)
         $stmt->bindParam(':username', $username);
         if ($stmt->execute()) {
             // Password update successful, you can redirect to the login page or display a success message
-            header('Location: login.php');
+            header('Location: resetPasswordForm.php');
             exit();
         } else {
             // Password update failed for some other reason, show an error message
@@ -144,7 +144,30 @@ function updateUserPassword($username, $password)
 }
 
 /**
- * Function to search users in the database.
+ * Retrieves user data from the database based on the provided email.
+ *
+ * @param string $email - The email used to search for the user.
+ * @return array - An array containing user details associated with the provided email.
+ */
+function findUserByEmail($email){
+    global $db;
+    $results = [];
+
+    try {
+        $stmt = $db->prepare('SELECT * FROM users WHERE email = :email');
+        $stmt->bindParam(':email', $email);
+
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+    } catch (PDOException $e) {
+        error_log("Database query error: " . $e->getMessage());
+    }
+
+    return $results;
+}
+
+/** Function to search users in the database.
  *
  * @param string $keyword - The search query to find user.
  * @return array - Return the array of users matching the keyword.
@@ -171,6 +194,16 @@ function searchUsers($keyword, $keyword2, $keyword3)
     return $results;
 }
 
+
+/**
+ * Function to update the user information.
+ *
+ * @param $user_id - The id of the user that needs to be updated
+ * @param $name - The user's name.
+ * @param $email - The user's email.
+ * @param $phone_number - The user's phone number.
+ * @return void
+ */
 function updateUser($user_id, $name, $email, $phone_number)
 {
     global $db;

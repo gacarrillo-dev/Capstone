@@ -8,7 +8,7 @@ $heading = "Searching";
 session_start();
 
 $user_id = $_SESSION['user_id'];
-
+$user_info = findUserById($user_id);
 $users_lists = get_users_lists($user_id);
 $viewListID = filter_input(INPUT_GET, "listID");
 $keyword = filter_input(INPUT_GET, "query");
