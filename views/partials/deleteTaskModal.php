@@ -6,7 +6,6 @@
 
         <!-- Modal Content -->
         <form action="" method="post">
-            <label id="taskIdLabel" class="text-center text-3xl text-red-500 mb-2"></label>
             <br/>
             <input type="hidden" name="taskIdHidden" id="taskIdHidden">
             <h2 class="text-xl font-semibold text-gray-50">Are you sure you want to delete?</h2>

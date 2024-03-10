@@ -65,7 +65,7 @@ if (isset($_POST['createList'])){
 
 //delete task
 if(isset($_POST['deleteTask'])){
-    $id = filter_input(INPUT_POST, 'taskIdEditHidden');
+    $id = filter_input(INPUT_POST, 'taskIdHidden');
     deleteTask($id);
 
     // reload the page data
@@ -73,16 +73,6 @@ if(isset($_POST['deleteTask'])){
     exit();
 }
 
-//delete List
-if(isset($_POST['deleteList'])){
-    $listID = filter_input(INPUT_GET, "listID");
-    $userID = $_SESSION['user_id'];
-    deleteList($userID, $listID);
-
-    // reload the page data
-    header('Location: today.php');
-    exit();
-}
 
 //Update a task
 if (isset($_POST['updateTask'])) {

@@ -16,7 +16,7 @@
                             <div class="flex flex-col">
 
                                 <!-- Hidden Task ID -->
-                                <input type="hidden" name="taskId" value="<?= htmlspecialchars($complete['task_id']) ?>">
+                                <input type="hidden" id="taskId" name="taskId" value="<?= htmlspecialchars($complete['task_id']) ?>">
 
                                 <!-- Hidden favorite -->
                                 <input type="hidden" name="taskFavorite" value="<?= htmlspecialchars($complete['is_favorite']) ?>">

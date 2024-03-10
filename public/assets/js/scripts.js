@@ -94,7 +94,6 @@
             console.log("Delete icon clicked.");
             var taskId = this.parentElement.querySelector('input[name="taskId"]').value;
             console.log(taskId);
-            document.getElementById('taskIdLabel').innerHTML = taskId;
             document.getElementById('taskIdHidden').value = taskId;
             showDeleteModal(taskId);
         }
