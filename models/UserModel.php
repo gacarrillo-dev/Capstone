@@ -94,7 +94,7 @@ function createUser($username, $email, $name, $password)
 
     try {
         // Prepare and execute the SQL query to insert the user into the database
-        $stmt = $db->prepare('INSERT INTO users (username, password, name, email) VALUES (:username, :password, :email, :name)');
+        $stmt = $db->prepare('INSERT INTO users (username, password, name, email) VALUES (:username, :password, :name, :email)');
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':name', $name);
