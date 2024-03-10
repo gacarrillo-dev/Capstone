@@ -10,7 +10,7 @@
         <form method="post" id="taskForm" class="space-y-4">
             <div>
                 <label for="lists" class="block text-gray-300 text-sm font-bold mb-2">List:</label>
-                <select id="lists" name="list_id" class="bg-zinc-950/80 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <select id="lists" name="list_id" class="bg-zinc-950/80 border border-gray-300 text-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                     <?php foreach ($users_lists as $user_list) : ?>
                         <option value="<?= htmlspecialchars($user_list['list_id']) ?>"><?= htmlspecialchars($user_list['list_name']) ?></option>
                     <?php endforeach; ?>

@@ -21,7 +21,7 @@
                 }
                 echo "<span class='text-gray-200'>{$statusLabel} Tasks | List: {$listLabel}</span>";
             } else {
-                echo "<span class='text-gray-200'>Lists not available</span>";
+                echo "<span class='text-red-800'>Lists not available</span>";
             }
             ?>
         </div>
