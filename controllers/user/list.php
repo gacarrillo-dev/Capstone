@@ -16,14 +16,7 @@ $tasks = get_tasks($viewListID);
 $listInfo = get_list_info($viewListID);
 $sharedUsers = findUsersByListId($viewListID);
 $sharedUsersList = implode(', ', array_column($sharedUsers, 'username'));
-//$users = searchUsers($userSearch, $userSearch, $userSearch);
 
-//$users =[
-//    ["username" => "gabe"],
-//    ["email" => "gacarrillo@email.neit.edu"],
-//];
-
-// Check if the user has access to the list
 $userHasAccessToList = false;
 foreach ($users_lists as $list) {
     if ($list['list_id'] == $viewListID) {
